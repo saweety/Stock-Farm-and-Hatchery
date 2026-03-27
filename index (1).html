@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ระบบสต๊อก ฟาร์ม/โรงฟักไข่ | Arbor Acres TH · Ross Breeders Siam</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap');
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--aa:#0f4c81;--aa-l:#1a65b0;--aa-p:#e8f1fb;--rb:#0f4c35;--rb-l:#1a6b4a;--rb-p:#e8f5ef;--danger:#c0392b;--dpale:#fdf0ee;--warn:#d97706;--wpale:#fffbeb;--ok:#1a6b4a;--okp:#e8f5ef;--g50:#f9fafb;--g100:#f3f4f6;--g200:#e5e7eb;--g300:#d1d5db;--g400:#9ca3af;--g500:#6b7280;--g700:#374151;--g900:#111827;--font:'Sarabun','Tahoma','Arial',sans-serif;--mono:'IBM Plex Mono','Courier New',monospace;--sh:0 1px 3px rgba(0,0,0,0.08);--r:10px;--rs:6px;--pri:#0f4c81;--pril:#1a65b0;--prip:#e8f1fb;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:#eef2f7;color:var(--g900);font-size:14px;min-height:100vh;}
+.layout{display:flex;min-height:100vh;}
+.sidebar{width:200px;background:#0d2d4e;color:#fff;display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:100;overflow-y:auto;}
+.main{margin-left:200px;flex:1;display:flex;flex-direction:column;}
+.sb-logo{padding:13px 13px 10px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.sb-logo .sys{font-size:12.5px;font-weight:800;color:#fff;line-height:1.3;}
+.sb-logo .doc{font-family:var(--mono);font-size:9.5px;color:rgba(255,255,255,0.3);margin-top:2px;}
+.co-btn{padding:6px 12px;border-radius:var(--rs);font-size:12px;font-weight:800;cursor:pointer;transition:all .15s;border:1.5px solid var(--g200);background:#fff;color:var(--g500);}
+.co-btn:hover{border-color:var(--pri);color:var(--pri);}
+.co-btn.caa{background:var(--aa);color:#fff;border-color:var(--aa);}
+.co-btn.crb{background:var(--rb);color:#fff;border-color:var(--rb);}
+.co-btn.call{background:var(--g700);color:#fff;border-color:var(--g700);}
+.tb-cosw{display:flex;align-items:center;gap:5px;background:var(--g100);border-radius:var(--rs);padding:3px;}
+.tb-cosw .co-btn{border:none;background:transparent;color:var(--g500);padding:5px 11px;border-radius:4px;}
+.tb-cosw .co-btn:hover{background:#fff;color:var(--g900);}
+.tb-cosw .co-btn.caa{background:var(--aa);color:#fff;}
+.tb-cosw .co-btn.crb{background:var(--rb);color:#fff;}
+.tb-cosw .co-btn.call{background:var(--g700);color:#fff;}
+.nsec{padding:9px 12px 2px;font-size:9px;color:rgba(255,255,255,0.28);letter-spacing:1px;text-transform:uppercase;font-weight:700;}
+.ni{display:flex;align-items:center;gap:8px;padding:7px 12px;cursor:pointer;border-radius:var(--rs);margin:1px 7px;transition:background .12s;font-size:13px;color:rgba(255,255,255,0.62);}
+.ni:hover{background:rgba(255,255,255,0.08);color:#fff;}
+.ni.active{background:rgba(255,255,255,0.14);color:#fff;font-weight:700;}
+.nic{width:17px;text-align:center;font-size:14px;flex-shrink:0;}
+.nb{margin-left:auto;border-radius:10px;font-size:10px;font-weight:700;min-width:17px;height:17px;display:flex;align-items:center;justify-content:center;padding:0 4px;}
+.nb.red{background:var(--danger);color:#fff;}
+.nb.amb{background:var(--warn);color:#fff;}
+.nb.blue{background:var(--aa);color:#fff;}
+.si{display:flex;align-items:center;gap:7px;padding:6px 12px 6px 26px;cursor:pointer;border-radius:var(--rs);margin:1px 7px;font-size:12px;color:rgba(255,255,255,0.5);transition:background .12s;}
+.si:hover{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.88);}
+.si.active{background:rgba(255,255,255,0.12);color:#fff;font-weight:600;}
+.sdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.sbf{margin-top:auto;padding:11px 13px;border-top:1px solid rgba(255,255,255,0.07);font-size:10px;color:rgba(255,255,255,0.28);}
+.topbar{background:#fff;border-bottom:1px solid var(--g200);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:50;}
+.tb-l{display:flex;align-items:center;gap:12px;}
+.tb-title{font-size:16px;font-weight:800;}
+.tb-sub{font-size:11.5px;color:var(--g500);margin-top:1px;}
+.tb-r{display:flex;gap:8px;align-items:center;}
+.btn{padding:7px 14px;border-radius:var(--rs);font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .15s;white-space:nowrap;display:inline-flex;align-items:center;gap:5px;}
+.btn-p{background:var(--pri);color:#fff;}
+.btn-p:hover{filter:brightness(1.1);}
+.btn-o{background:#fff;color:var(--pri);border:1.5px solid var(--pri);}
+.btn-o:hover{background:var(--prip);}
+.btn-g{background:transparent;color:var(--g500);border:1px solid var(--g200);}
+.btn-g:hover{background:var(--g50);}
+.btn-ai{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;}
+.btn-ai:hover{filter:brightness(1.1);}
+.btn-pdf{background:#dc2626;color:#fff;}
+.btn-pdf:hover{filter:brightness(1.1);}
+.btn-sm{padding:5px 11px;font-size:12px;}
+.content{padding:20px 24px;flex:1;}
+.page{display:none;}.page.active{display:block;}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:18px;}
+.sc{background:#fff;border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh);border:1px solid var(--g200);}
+.sc.sd{border-left:4px solid var(--danger);}.sc.sw{border-left:4px solid var(--warn);}.sc.ss{border-left:4px solid var(--ok);}.sc.si{border-left:4px solid var(--aa);}
+.slbl{font-size:11px;color:var(--g500);font-weight:600;margin-bottom:4px;}
+.sval{font-size:25px;font-weight:800;line-height:1;}
+.sc.sd .sval{color:var(--danger);}.sc.sw .sval{color:var(--warn);}.sc.ss .sval{color:var(--ok);}.sc.si .sval{color:var(--aa);}
+.ssub{font-size:11px;color:var(--g400);margin-top:3px;}
+.abar{display:flex;align-items:center;gap:10px;padding:9px 13px;border-radius:var(--rs);margin-bottom:9px;font-size:12.5px;}
+.abar.d{background:var(--dpale);border:1px solid #fca5a5;color:#7f1d1d;}
+.abar.w{background:var(--wpale);border:1px solid #fcd34d;color:#78350f;}
+.abar.ai{background:linear-gradient(135deg,#ede9fe,#ddd6fe);border:1px solid #c4b5fd;color:#4c1d95;}
+.sechdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;}
+.sectit{font-size:14px;font-weight:800;}
+.seccnt{font-size:12px;color:var(--g400);margin-left:6px;}
+.tabs{display:flex;border-bottom:2px solid var(--g200);margin-bottom:16px;}
+.tab{padding:7px 15px;font-size:13px;font-weight:700;color:var(--g400);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .12s;}
+.tab:hover{color:var(--pri);}
+.tab.active{color:var(--pri);border-bottom-color:var(--pri);}
+.tw{background:#fff;border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--g200);overflow:hidden;margin-bottom:18px;}
+.ttool{padding:11px 14px;border-bottom:1px solid var(--g100);display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.sbox{flex:1;min-width:150px;position:relative;}
+.sbox input{width:100%;padding:7px 10px 7px 30px;border:1px solid var(--g200);border-radius:var(--rs);font-family:var(--font);font-size:13px;outline:none;}
+.sbox input:focus{border-color:var(--pri);}
+.sbox::before{content:'🔍';position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:12px;}
+.fsel{padding:7px 9px;border:1px solid var(--g200);border-radius:var(--rs);font-family:var(--font);font-size:12.5px;outline:none;background:#fff;cursor:pointer;}
+.fsel:focus{border-color:var(--pri);}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead th{padding:8px 12px;text-align:left;font-size:10.5px;font-weight:700;color:var(--g500);background:var(--g50);border-bottom:1px solid var(--g200);white-space:nowrap;}
+tbody tr{border-bottom:1px solid var(--g100);transition:background .1s;cursor:pointer;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:var(--g50);}
+tbody tr.rd{background:#fff5f5;}tbody tr.rd:hover{background:#fee2e2;}
+tbody tr.rw{background:#fffbeb;}tbody tr.rw:hover{background:#fef3c7;}
+td{padding:8px 12px;vertical-align:middle;}
+.tc{font-family:var(--mono);font-size:11px;color:var(--g400);}
+.tn{font-weight:700;}.tn small{display:block;font-size:11px;font-weight:400;color:var(--g400);margin-top:1px;}
+.tnum{font-family:var(--mono);font-weight:700;text-align:right;}
+.tnum.z{color:var(--g300);}.tnum.lo{color:var(--danger);}.tnum.ok{color:var(--ok);}
+.bdg{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;}
+.bok{background:var(--okp);color:var(--ok);}
+.blow{background:var(--dpale);color:var(--danger);}
+.bexp{background:var(--dpale);color:var(--danger);}
+.bnear{background:var(--wpale);color:var(--warn);}
+.bnomin{background:var(--g100);color:var(--g500);}
+.bchem{background:#eff6ff;color:#1d4ed8;}
+.bvac{background:#f0fdf4;color:#166534;}
+.bmed{background:#fdf4ff;color:#7e22ce;}
+.baa{background:var(--aa-p);color:var(--aa);}
+.brb{background:var(--rb-p);color:var(--rb);}
+.mb-w{display:flex;align-items:center;gap:6px;}
+.mb{height:5px;border-radius:3px;background:var(--g200);width:65px;overflow:hidden;flex-shrink:0;}
+.mb-f{height:100%;border-radius:3px;}
+.mb-f.ok{background:var(--ok);}.mb-f.lo{background:var(--danger);}.mb-f.mi{background:var(--warn);}
+.moverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;align-items:center;justify-content:center;}
+.moverlay.show{display:flex;}
+.modal{background:#fff;border-radius:var(--r);width:570px;max-width:95vw;max-height:91vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.22);}
+.modal-lg{width:700px;}
+.modal-ai{width:680px;}
+.mhdr{padding:16px 19px 12px;border-bottom:1px solid var(--g200);display:flex;align-items:flex-start;justify-content:space-between;}
+.mtit{font-size:15px;font-weight:800;}.msub{font-size:12px;color:var(--g400);margin-top:2px;}
+.mcl{cursor:pointer;font-size:22px;color:var(--g300);line-height:1;padding:0 3px;}.mcl:hover{color:var(--g700);}
+.mbody{padding:17px 19px;}
+.mfoot{padding:12px 19px;border-top:1px solid var(--g200);display:flex;gap:8px;justify-content:flex-end;}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.fg{display:flex;flex-direction:column;gap:4px;}.fg.s2{grid-column:span 2;}
+label{font-size:11.5px;font-weight:700;color:var(--g700);}
+.req::after{content:' *';color:var(--danger);}
+input,select,textarea{padding:7px 10px;border:1px solid var(--g200);border-radius:var(--rs);font-family:var(--font);font-size:13px;outline:none;width:100%;background:#fff;transition:border-color .15s;}
+input:focus,select:focus,textarea:focus{border-color:var(--pri);box-shadow:0 0 0 3px rgba(15,76,129,0.08);}
+input[type=number]{font-family:var(--mono);}
+.fdiv{grid-column:span 2;border:none;border-top:1px solid var(--g100);margin:2px 0;}
+.scards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:11px;margin-bottom:18px;}
+.scard{background:#fff;border-radius:var(--r);padding:13px 15px;box-shadow:var(--sh);border:1px solid var(--g200);cursor:pointer;transition:all .15s;}
+.scard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(0,0,0,0.1);}
+.schdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;}
+.scnm{font-size:13.5px;font-weight:800;}
+.scst{display:flex;gap:11px;}
+.scv{text-align:center;}.scv-n{font-size:18px;font-weight:800;line-height:1;}
+.scv-n.red{color:var(--danger);}.scv-n.amb{color:var(--warn);}.scv-n.gry{color:var(--g400);}
+.scv-l{font-size:10px;color:var(--g400);margin-top:2px;}
+.txlist{display:flex;flex-direction:column;}
+.txi{display:flex;align-items:center;gap:11px;padding:8px 0;border-bottom:1px solid var(--g100);}
+.txi:last-child{border-bottom:none;}
+.txd{width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.txd.in{background:var(--okp);}.txd.out{background:var(--dpale);}
+.txi-i{flex:1;}.txi-n{font-size:13px;font-weight:700;}.txi-m{font-size:11px;color:var(--g400);margin-top:1px;}
+.txq{font-family:var(--mono);font-weight:800;font-size:13px;}
+.txq.in{color:var(--ok);}.txq.out{color:var(--danger);}
+.empty{text-align:center;padding:34px 20px;color:var(--g400);}
+.empty-ic{font-size:30px;margin-bottom:7px;}
+.pg{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-top:1px solid var(--g100);font-size:11.5px;color:var(--g400);}
+.pgb{display:flex;gap:3px;}
+.pb{padding:4px 9px;border:1px solid var(--g200);border-radius:var(--rs);background:#fff;cursor:pointer;font-size:11.5px;color:var(--g700);}
+.pb:hover,.pb.active{background:var(--pri);color:#fff;border-color:var(--pri);}
+.tw-wrap{position:fixed;bottom:20px;right:20px;z-index:999;display:flex;flex-direction:column;gap:7px;}
+.toast{background:var(--g900);color:#fff;padding:10px 15px;border-radius:var(--rs);font-size:13px;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.15);animation:si .2s ease;display:flex;align-items:center;gap:8px;}
+.toast.success{background:var(--rb);}.toast.error{background:var(--danger);}
+@keyframes si{from{transform:translateX(50px);opacity:0}to{transform:none;opacity:1}}
+.dh{display:flex;align-items:center;gap:10px;margin:18px 0 12px;}
+.dhl{flex:1;height:1px;background:var(--g200);}
+.dht{font-size:10.5px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.8px;white-space:nowrap;}
+
+/* === CHART PAGE === */
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;}
+.chart-box{background:#fff;border-radius:var(--r);padding:16px;box-shadow:var(--sh);border:1px solid var(--g200);}
+.chart-box.full{grid-column:span 2;}
+.chart-title{font-size:13px;font-weight:800;margin-bottom:12px;color:var(--g700);}
+.chart-wrap{position:relative;height:220px;}
+
+/* === AI PAGE === */
+.ai-page{display:flex;flex-direction:column;gap:16px;}
+.ai-chat-box{background:#fff;border-radius:var(--r);border:1px solid var(--g200);box-shadow:var(--sh);display:flex;flex-direction:column;height:520px;}
+.ai-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;}
+.ai-msg{display:flex;gap:10px;align-items:flex-start;}
+.ai-msg.user{flex-direction:row-reverse;}
+.ai-bubble{max-width:75%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.6;}
+.ai-msg.user .ai-bubble{background:var(--pri);color:#fff;border-radius:12px 12px 2px 12px;}
+.ai-msg.bot .ai-bubble{background:var(--g100);color:var(--g900);border-radius:12px 12px 12px 2px;}
+.ai-avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.ai-avatar.bot{background:linear-gradient(135deg,#6366f1,#8b5cf6);}
+.ai-avatar.user{background:var(--aa);}
+.ai-input-row{padding:12px 14px;border-top:1px solid var(--g200);display:flex;gap:8px;}
+.ai-input-row textarea{resize:none;height:40px;font-size:13px;border-radius:var(--rs);}
+.ai-quick{display:flex;gap:8px;flex-wrap:wrap;padding:10px 14px 0;}
+.ai-qbtn{padding:5px 12px;border-radius:20px;border:1px solid var(--g200);background:#fff;font-family:var(--font);font-size:12px;cursor:pointer;color:var(--g700);transition:all .12s;}
+.ai-qbtn:hover{border-color:#8b5cf6;color:#6366f1;background:#ede9fe;}
+.typing-dots span{display:inline-block;width:7px;height:7px;background:var(--g400);border-radius:50%;margin:0 2px;animation:dot 1.2s infinite;}
+.typing-dots span:nth-child(2){animation-delay:.2s;}
+.typing-dots span:nth-child(3){animation-delay:.4s;}
+@keyframes dot{0%,80%,100%{transform:scale(.7);opacity:.5}40%{transform:scale(1);opacity:1}}
+
+/* PDF PREVIEW */
+.pdf-preview{background:var(--g50);border:1px solid var(--g200);border-radius:var(--rs);padding:14px;font-size:12.5px;color:var(--g700);line-height:1.7;}
+.pdf-section{margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--g200);}
+.pdf-section:last-child{border-bottom:none;}
+
+/* === GOOGLE SHEETS ONLINE MODE === */
+.gs-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0d2d4e,#0f4c35);}
+.gs-card{background:#fff;border-radius:16px;padding:30px 32px;width:420px;max-width:95vw;box-shadow:0 24px 80px rgba(0,0,0,0.4);}
+.gs-logo{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.gs-logo-icon{font-size:28px;}
+.gs-logo-text .t1{font-size:16px;font-weight:800;color:#0d2d4e;}
+.gs-logo-text .t2{font-size:11px;color:var(--g400);}
+.gs-status{padding:9px 13px;border-radius:var(--rs);font-size:13px;font-weight:600;margin-bottom:14px;display:none;}
+.gs-status.ok{background:#e8f5ef;color:#1a6b4a;display:block;}
+.gs-status.err{background:#fdf0ee;color:#c0392b;display:block;}
+.gs-status.info{background:#e8f1fb;color:#0f4c81;display:block;}
+.gs-field{margin-bottom:10px;}
+.gs-field label{display:block;font-size:11.5px;font-weight:700;color:var(--g700);margin-bottom:4px;}
+.gs-field input{width:100%;padding:9px 12px;border:1.5px solid var(--g200);border-radius:var(--rs);font-family:var(--font);font-size:13px;outline:none;}
+.gs-field input:focus{border-color:#0f4c81;box-shadow:0 0 0 3px rgba(15,76,129,0.1);}
+.gs-btn{width:100%;padding:11px;border-radius:var(--rs);font-family:var(--font);font-size:14px;font-weight:800;cursor:pointer;border:none;margin-top:4px;transition:all .15s;}
+.gs-btn.pri{background:#0f4c81;color:#fff;margin-bottom:8px;}
+.gs-btn.pri:hover{background:#1a65b0;}
+.gs-btn.sec{background:var(--g100);color:var(--g700);}
+.gs-btn.sec:hover{background:var(--g200);}
+.gs-steps{margin-top:16px;background:#f8faff;border:1px solid #dbeafe;border-radius:var(--rs);padding:12px 14px;font-size:11.5px;color:var(--g700);line-height:1.8;}
+.gs-steps strong{color:#0f4c81;}
+.gs-steps code{font-family:var(--mono);background:#e0e7ff;color:#3730a3;padding:1px 5px;border-radius:3px;font-size:11px;}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block;animation:pp 2s infinite;flex-shrink:0;}
+.sync-dot.off{background:var(--g300);animation:none;}
+.online-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#166534;background:#dcfce7;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.online-badge.off{color:var(--g500);background:var(--g100);}
+</style>
+:root{--pilot:#7c3aed;--pilot-l:#8b5cf6;--pilot-p:#ede9fe;--pilot-d:#4c1d95;}
+.pilot-banner{background:linear-gradient(135deg,#4c1d95,#6d28d9,#7c3aed);color:#fff;padding:9px 24px;display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:700;position:relative;overflow:hidden;flex-shrink:0;}
+.pilot-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 8px,rgba(255,255,255,0.04) 8px,rgba(255,255,255,0.04) 16px);}
+.pilot-banner-inner{display:flex;align-items:center;gap:10px;z-index:1;flex:1;flex-wrap:wrap;}
+.pilot-tag{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);border-radius:20px;padding:2px 10px;font-size:10px;font-weight:800;letter-spacing:1.2px;}
+.pilot-sites-sw{display:flex;gap:5px;margin-left:6px;}
+.pilot-chip{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.28);border-radius:20px;padding:3px 11px;font-size:11px;font-weight:700;cursor:pointer;transition:all .15s;color:rgba(255,255,255,0.8);}
+.pilot-chip:hover,.pilot-chip.active{background:#fff;color:var(--pilot-d);border-color:#fff;}
+.pilot-exit{margin-left:auto;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.75);cursor:pointer;padding:4px 12px;border-radius:var(--rs);font-family:var(--font);font-size:11px;font-weight:700;transition:all .15s;z-index:1;}
+.pilot-exit:hover{background:rgba(255,255,255,0.22);color:#fff;}
+
+.bdg-pilot{background:linear-gradient(135deg,#ede9fe,#ddd6fe);color:#4c1d95;border:1px solid #c4b5fd;}
+.pilot-dot{width:7px;height:7px;border-radius:50%;background:#a78bfa;display:inline-block;margin-right:5px;animation:pp 1.8s infinite;}
+@keyframes pp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+
+/* Pilot Dashboard card */
+.pilot-dash{background:#fff;border-radius:var(--r);border:2px solid var(--pilot-l);box-shadow:0 0 0 4px var(--pilot-p),var(--sh);padding:16px 18px;margin-bottom:16px;}
+.pilot-dash-title{font-size:14px;font-weight:800;color:var(--pilot-d);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.pilot-kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px;}
+.pilot-kpi{background:var(--pilot-p);border-radius:var(--rs);padding:9px 12px;text-align:center;}
+.pilot-kpi-v{font-size:20px;font-weight:800;color:var(--pilot-d);line-height:1;}
+.pilot-kpi-l{font-size:10px;color:var(--pilot);font-weight:600;margin-top:2px;}
+.pilot-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.pilot-sc{background:var(--g50);border-radius:var(--rs);border:1px solid var(--g200);padding:11px 13px;}
+.pilot-sc-hdr{font-size:12px;font-weight:800;margin-bottom:7px;display:flex;align-items:center;gap:5px;}
+.pilot-sc-row{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;padding:3px 0;border-bottom:1px solid var(--g100);}
+.pilot-sc-row:last-child{border-bottom:none;}
+.pilot-sc-v{font-weight:800;font-family:var(--mono);font-size:12px;}
+.pilot-bar{height:5px;background:var(--g200);border-radius:3px;margin-top:5px;overflow:hidden;}
+.pilot-bar-f{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--pilot-l),var(--pilot));}
+
+/* sidebar pilot */
+.sb-pilot-sec{padding:7px 12px 2px;font-size:9px;color:#a78bfa;letter-spacing:1px;text-transform:uppercase;font-weight:800;}
+.ni-pilot{background:rgba(139,92,246,0.15)!important;}
+.ni-pilot .nic{color:#a78bfa;}
+.ni-pilot span:not(.nic):not(.nb){color:#c4b5fd;}
+.ni-pilot.active{background:rgba(139,92,246,0.32)!important;}
+.ni-pilot.active span{color:#fff!important;}
+.sidebar-pilot-line{margin:4px 12px;height:1px;background:rgba(139,92,246,0.25);}
+
+/* site list pilot highlight */
+.si-pilot{background:rgba(139,92,246,0.1)!important;}
+.si-pilot .sdot{box-shadow:0 0 0 3px rgba(139,92,246,0.35);}
+.si-pilot span:last-child::after{content:' 🔬';font-size:10px;}
+</style>
+</head>
+<body>
+
+<!-- ===== GOOGLE SHEETS SETUP OVERLAY ===== -->
+<div class="gs-overlay" id="gs-overlay" style="display:none">
+  <div class="gs-card">
+    <div class="gs-logo">
+      <div class="gs-logo-icon">🐣</div>
+      <div class="gs-logo-text">
+        <div class="t1">ระบบสต๊อก ฟาร์ม/โรงฟักไข่</div>
+        <div class="t2">Arbor Acres TH · Ross Breeders Siam · ISO 9001:2015 · Online Mode</div>
+      </div>
+    </div>
+    <div class="gs-status info" id="gs-msg">กรุณาตั้งค่าการเชื่อมต่อ</div>
+    <div class="gs-field">
+      <label>🔗 Google Apps Script URL <span style="color:var(--danger)">*</span></label>
+      <input id="gs-url" type="url" placeholder="https://script.google.com/macros/s/AKfy.../exec"/>
+    </div>
+    <div class="gs-field">
+      <label>👤 ชื่อผู้ใช้งาน <span style="color:var(--danger)">*</span></label>
+      <input id="gs-user" placeholder="เช่น สมชาย / PBH-Admin" onkeydown="if(event.key==='Enter')gsSaveConfig()"/>
+    </div>
+    <button class="gs-btn pri" onclick="gsSaveConfig()">🔗 เชื่อมต่อ Google Sheets</button>
+    <button class="gs-btn sec" onclick="gsClearConfig()">⚙ ล้างการตั้งค่า</button>
+    <div class="gs-steps">
+      <strong>📋 วิธีตั้งค่าครั้งแรก (ทำ 1 ครั้งโดย Admin):</strong><br>
+      1. เปิด <strong>Google Sheets</strong> → สร้าง Spreadsheet ใหม่<br>
+      2. เมนู <strong>Extensions → Apps Script</strong><br>
+      3. วางโค้ดจากไฟล์ <code>gas-backend.gs</code> → บันทึก<br>
+      4. <strong>Deploy → New deployment</strong><br>
+      &nbsp;&nbsp;• Execute as: <code>Me</code> &nbsp;|&nbsp; Who has access: <code>Anyone</code><br>
+      5. คัดลอก <strong>Web App URL</strong> มาวางด้านบน<br>
+      6. ใส่ชื่อผู้ใช้ → กดเชื่อมต่อ ✅
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+<div class="sidebar">
+  <div class="sb-logo"><div class="sys">ระบบสต๊อก ฟาร์ม/โรงฟักไข่</div><div class="doc">ISO 9001:2015 · v14 · ONLINE</div></div>
+  <div style="padding:6px 12px 4px;font-size:10px;color:rgba(255,255,255,0.35);font-weight:700;" id="sb-co-nm">อาร์เบอร์ เอเคอร์ส TH</div>
+  <div class="nsec">เมนูหลัก</div>
+  <div class="ni active" onclick="showPage('dashboard')"><span class="nic">📊</span><span>Dashboard</span></div>
+  <div class="ni" onclick="showPage('sites')"><span class="nic">🏭</span><span>ภาพรวมหน่วยงาน</span></div>
+  <div class="ni" onclick="showPage('stock')"><span class="nic">📦</span><span>สต๊อกสินค้า</span><span class="nb red" id="nb-low">0</span></div>
+  <div class="ni" onclick="showPage('transactions')"><span class="nic">📋</span><span>บันทึกรับ-จ่าย</span></div>
+  <div class="nsec">วิเคราะห์</div>
+  <div class="ni" onclick="showPage('charts')"><span class="nic">📈</span><span>กราฟ & ชาร์ต</span></div>
+  <div class="ni" onclick="showPage('ai')"><span class="nic">🤖</span><span>AI วิเคราะห์</span><span class="nb blue" style="font-size:9px;padding:0 5px;">NEW</span></div>
+  <div class="sidebar-pilot-line"></div>
+  <div class="sb-pilot-sec">🔬 Pilot Sites</div>
+  <div class="ni ni-pilot" id="sb-pilot-menu" onclick="showPage('pilot')"><span class="nic">🔬</span><span>Pilot Dashboard</span></div>
+  <div class="nsec">จัดการ</div>
+  <div class="ni" onclick="showPage('products')"><span class="nic">🗂️</span><span>รายการสินค้า</span></div>
+  <div class="ni" onclick="showPage('alerts')"><span class="nic">🔔</span><span>การแจ้งเตือน</span><span class="nb amb" id="nb-alerts">0</span></div>
+  <div class="nsec" id="sb-sl">หน่วยงาน AA</div>
+  <div id="sb-sites"></div>
+  <div class="sbf">Arbor Acres TH · Ross Breeders Siam</div>
+</div>
+
+<div class="main">
+  <!-- PILOT BANNER -->
+  <div class="pilot-banner" id="pilot-banner">
+    <div class="pilot-banner-inner">
+      <span class="pilot-dot"></span>
+      <span class="pilot-tag">PILOT</span>
+      <span style="z-index:1">กำลังทดสอบระบบ — PBH & NYH</span>
+      <div class="pilot-sites-sw">
+        <button class="pilot-chip active" id="pc-hp" onclick="pilotFocus('AA-HP')">🏭 PBH — โรงฟักไข่เพชรบูรณ์</button>
+        <button class="pilot-chip" id="pc-hn" onclick="pilotFocus('RB-HN')">🏭 NYH — โรงฟักไข่นายม</button>
+        <button class="pilot-chip" id="pc-both" onclick="pilotFocus('BOTH')" style="opacity:.65">ทั้งคู่</button>
+      </div>
+    </div>
+    <button class="pilot-exit" onclick="showPage('dashboard')">← กลับ Dashboard</button>
+  </div>
+
+  <div class="topbar">
+    <div class="tb-l">
+      <div class="tb-cosw">
+        <button class="co-btn caa" id="cb-aa" onclick="switchCo('AA')">AA</button>
+        <button class="co-btn" id="cb-rb" onclick="switchCo('RB')">Ross</button>
+        <button class="co-btn" id="cb-all" onclick="switchCo('ALL')">ทั้งหมด</button>
+      </div>
+      <div style="width:1px;height:28px;background:var(--g200);flex-shrink:0;"></div>
+      <div><div class="tb-title" id="tb-title">Dashboard สต๊อก</div><div class="tb-sub" id="tb-sub">ภาพรวมทุกหน่วยงาน</div></div>
+    </div>
+    <div class="tb-r">
+      <div class="online-badge off" id="sync-badge"><span class="sync-dot off" id="sync-dot"></span><span id="sync-txt">กำลังเชื่อมต่อ...</span></div>
+      <button class="btn btn-g btn-sm" onclick="openModal('modal-tx')">+ บันทึกรับ-จ่าย</button>
+      <button class="btn btn-ai btn-sm" onclick="showPage('ai')">🤖 AI วิเคราะห์</button>
+      <button class="btn btn-pdf btn-sm" onclick="openPdfModal()">📄 Export PDF</button>
+      <button class="btn btn-g btn-sm" onclick="exportCSV()">⬇ CSV</button>
+      <button class="btn btn-g btn-sm" title="เปลี่ยนผู้ใช้/ตั้งค่า" onclick="gsLogout()">🚪</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <!-- DASHBOARD -->
+    <div class="page active" id="page-dashboard">
+      <div class="sgrid" id="d-stats"></div>
+      <div id="d-alerts"></div>
+      <div class="sechdr"><div class="sectit">รายการที่ต้องดำเนินการ <span class="seccnt" id="d-cnt"></span></div></div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchDT('low')">🔴 สต๊อกต่ำ</div>
+        <div class="tab" onclick="switchDT('expiry')">🟡 ใกล้/หมดอายุ</div>
+        <div class="tab" onclick="switchDT('recent')">🕐 รายการล่าสุด</div>
+      </div>
+      <div id="d-tab"></div>
+    </div>
+
+    <!-- SITES -->
+    <div class="page" id="page-sites"><div id="sites-c"></div></div>
+
+    <!-- STOCK -->
+    <div class="page" id="page-stock">
+      <div class="tw">
+        <div class="ttool">
+          <div class="sbox"><input type="text" placeholder="ค้นหาสินค้า, รหัส..." oninput="filterStock()" id="sq"></div>
+          <select class="fsel" onchange="filterStock()" id="s-cat"><option value="">ทุกหมวด</option><option value="เคมีภัณฑ์">เคมีภัณฑ์</option><option value="วัคซีน">วัคซีน</option><option value="เวชภัณฑ์">เวชภัณฑ์</option></select>
+          <select class="fsel" onchange="filterStock()" id="s-st"><option value="">ทุกสถานะ</option><option value="low">สต๊อกต่ำ</option><option value="near">ใกล้หมดอายุ</option><option value="expired">หมดอายุแล้ว</option></select>
+        </div>
+        <div id="stock-b"></div>
+        <div class="pg"><span id="s-pi"></span><div class="pgb" id="s-pb"></div></div>
+      </div>
+    </div>
+
+    <!-- TRANSACTIONS -->
+    <div class="page" id="page-transactions">
+      <div class="tw">
+        <div class="ttool">
+          <div class="sbox"><input type="text" placeholder="ค้นหารายการ..." oninput="filterTx()" id="tq"></div>
+          <select class="fsel" onchange="filterTx()" id="t-type"><option value="">รับ-จ่ายทั้งหมด</option><option value="in">รับเข้า</option><option value="out">จ่ายออก</option></select>
+          <select class="fsel" onchange="filterTx()" id="t-site"><option value="">ทุกหน่วยงาน</option></select>
+          <button class="btn btn-p btn-sm" onclick="openModal('modal-tx')">+ บันทึกใหม่</button>
+        </div>
+        <div id="tx-b"></div>
+        <div class="pg"><span id="t-pi"></span><div class="pgb" id="t-pb"></div></div>
+      </div>
+    </div>
+
+    <!-- CHARTS PAGE -->
+    <div class="page" id="page-charts">
+      <div class="chart-grid">
+        <div class="chart-box">
+          <div class="chart-title">📊 สต๊อกตามหมวดหมู่</div>
+          <div class="chart-wrap"><canvas id="chart-cat"></canvas></div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">🚦 สถานะสินค้าทั้งหมด</div>
+          <div class="chart-wrap"><canvas id="chart-status"></canvas></div>
+        </div>
+        <div class="chart-box full">
+          <div class="chart-title">🏭 สต๊อกสินค้าต่ำ vs มินิมัม (แยกหน่วยงาน)</div>
+          <div class="chart-wrap" style="height:260px"><canvas id="chart-sites"></canvas></div>
+        </div>
+        <div class="chart-box full">
+          <div class="chart-title">📅 กิจกรรมรับ-จ่าย 30 วันล่าสุด</div>
+          <div class="chart-wrap" style="height:220px"><canvas id="chart-activity"></canvas></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI PAGE -->
+    <div class="page" id="page-ai">
+      <div class="ai-page">
+        <div class="abar ai">🤖 <strong>AI วิเคราะห์สต๊อก</strong> — ถามได้ทุกอย่างเกี่ยวกับสต๊อก วัคซีน เคมีภัณฑ์ หรือขอคำแนะนำในการจัดการ</div>
+        <div class="ai-chat-box">
+          <div class="ai-quick" id="ai-quick">
+            <button class="ai-qbtn" onclick="aiQuick('สรุปสถานะสต๊อกทั้งหมดให้หน่อย')">📊 สรุปสต๊อก</button>
+            <button class="ai-qbtn" onclick="aiQuick('สินค้าไหนควรสั่งซื้อเพิ่มด่วนที่สุด?')">🚨 สั่งซื้อด่วน</button>
+            <button class="ai-qbtn" onclick="aiQuick('วัคซีนที่ใกล้หมดอายุมีรายการอะไรบ้าง?')">💉 วัคซีนหมดอายุ</button>
+            <button class="ai-qbtn" onclick="aiQuick('แนะนำการจัดการสต๊อกเคมีภัณฑ์ให้หน่อย')">🧪 จัดการเคมีภัณฑ์</button>
+            <button class="ai-qbtn" onclick="aiQuick('หน่วยงานไหนมีปัญหาสต๊อกมากที่สุด?')">🏭 หน่วยงานวิกฤต</button>
+          </div>
+          <div class="ai-msgs" id="ai-msgs">
+            <div class="ai-msg bot">
+              <div class="ai-avatar bot">🤖</div>
+              <div class="ai-bubble">สวัสดีครับ! ผมคือ AI ผู้ช่วยวิเคราะห์สต๊อก ฟาร์ม/โรงฟักไข่ ของ Arbor Acres TH และ Ross Breeders Siam 🐣<br><br>ผมสามารถช่วยได้ เช่น:<br>• วิเคราะห์สต๊อกที่วิกฤต<br>• แนะนำการสั่งซื้อ<br>• ตรวจสอบวันหมดอายุ<br>• สรุปรายงานประจำวัน<br><br>ถามได้เลยครับ!</div>
+            </div>
+          </div>
+          <div class="ai-input-row">
+            <textarea id="ai-input" placeholder="พิมพ์คำถามเกี่ยวกับสต๊อก..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAI();}"></textarea>
+            <button class="btn btn-ai" onclick="sendAI()" id="ai-send-btn">ส่ง</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="page" id="page-products">
+      <div class="tw">
+        <div class="ttool">
+          <div class="sbox"><input type="text" placeholder="ค้นหาสินค้า..." oninput="filterProds()" id="pq"></div>
+          <select class="fsel" onchange="filterProds()" id="p-cat"><option value="">ทุกหมวด</option><option value="เคมีภัณฑ์">เคมีภัณฑ์</option><option value="วัคซีน">วัคซีน</option><option value="เวชภัณฑ์">เวชภัณฑ์</option></select>
+          <button class="btn btn-p btn-sm" onclick="openModal('modal-product')">+ เพิ่มสินค้า</button>
+        </div>
+        <div id="prod-b"></div>
+        <div class="pg"><span id="p-pi"></span></div>
+      </div>
+    </div>
+
+    <!-- ALERTS -->
+    <div class="page" id="page-alerts"><div id="alerts-b"></div></div>
+
+    <!-- PILOT DASHBOARD -->
+    <div class="page" id="page-pilot"><div id="pilot-c"></div></div>
+  </div>
+</div>
+</div>
+
+<!-- MODAL: บันทึก -->
+<div class="moverlay" id="modal-tx">
+  <div class="modal">
+    <div class="mhdr"><div><div class="mtit">บันทึกรับเข้า / จ่ายออก</div><div class="msub">สต๊อกแยกตามหน่วยงานอัตโนมัติ</div></div><span class="mcl" onclick="closeModal('modal-tx')">×</span></div>
+    <div class="mbody"><div class="fg2">
+      <div class="fg"><label class="req">ประเภท</label><select id="f-type"><option value="in">รับเข้า ➕</option><option value="out">จ่ายออก ➖</option></select></div>
+      <div class="fg"><label class="req">วันที่</label><input type="date" id="f-date"></div>
+      <div class="fg"><label class="req">บริษัท</label><select id="f-co" onchange="onCoChange()"><option value="AA">บ. อาร์เบอร์ เอเคอร์ส ประเทศไทย จำกัด</option><option value="RB">บ. รอส บรีดเดอร์ส สยาม จำกัด</option></select></div>
+      <div class="fg"><label class="req">หน่วยงาน / ฟาร์ม</label><select id="f-site" onchange="onProdChange()"></select></div>
+      <div class="fg s2"><label class="req">ชื่อผลิตภัณฑ์</label><select id="f-prod" onchange="onProdChange()"><option value="">-- เลือกสินค้า --</option></select></div>
+      <!-- Info panel แสดงอัตโนมัติเมื่อเลือกสินค้า -->
+      <div class="fg s2" id="f-prod-info" style="display:none">
+        <div style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:1.5px solid #7dd3fc;border-radius:var(--rs);padding:10px 13px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px 16px;font-size:12px;">
+          <div><div style="color:#0369a1;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.5px">รหัสสินค้า</div><div id="fi-code" style="font-family:var(--mono);font-weight:800;font-size:13px;margin-top:2px">—</div></div>
+          <div><div style="color:#0369a1;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.5px">หมวดหมู่</div><div id="fi-cat" style="font-weight:700;margin-top:2px">—</div></div>
+          <div><div style="color:#0369a1;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.5px">ขนาดบรรจุ</div><div id="fi-size" style="font-weight:700;margin-top:2px">—</div></div>
+          <div><div style="color:#0369a1;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.5px">หน่วยนับ</div><div id="fi-unit" style="font-weight:700;margin-top:2px">—</div></div>
+          <div><div style="color:#0369a1;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.5px">สต๊อกคงเหลือ (หน่วยงานนี้)</div><div id="fi-stock" style="font-weight:800;font-size:14px;margin-top:2px">—</div></div>
+        </div>
+      </div>
+      <div class="fg" style="display:none"><label>หมวดหมู่</label><input type="text" id="f-cat" readonly style="background:var(--g50);color:var(--g400)"></div>
+      <div class="fg" style="display:none"><label>รหัสสินค้า</label><input type="text" id="f-code" readonly style="background:var(--g50);color:var(--g400);font-family:var(--mono)"></div>
+      <hr class="fdiv">
+      <div class="fg"><label class="req">จำนวน</label><input type="number" id="f-qty" min="1" placeholder="0"></div>
+      <div class="fg"><label>Lot No.</label><input type="text" id="f-lot" placeholder="หมายเลข Lot"></div>
+      <div class="fg s2"><label>เลขที่ใบแจ้งรับสินค้า</label><input type="text" id="f-docno" placeholder="เช่น GR-2026-00123"></div>
+      <div class="fg"><label>ขนาดบรรจุ</label><input type="text" id="f-packsize" placeholder="เช่น 20 ลิตร/ถัง"></div>
+      <div class="fg"><label>น้ำหนัก</label><input type="text" id="f-weight" placeholder="เช่น 25 กก."></div>
+      <div class="fg"><label>สี</label><input type="text" id="f-color" placeholder="เช่น ใส, เหลือง, ขาว"></div>
+      <div class="fg"><label>วันที่ผลิต</label><input type="date" id="f-mfd"></div>
+      <div class="fg"><label>วันหมดอายุ</label><input type="date" id="f-exp"></div>
+      <div class="fg"><label>ผู้ผลิต</label><input type="text" id="f-mfr" placeholder="บริษัทผู้ผลิต"></div>
+      <div class="fg"><label>ผู้เบิก</label><input type="text" id="f-req" placeholder="ชื่อผู้เบิก"></div>
+      <div class="fg"><label>ผู้อนุมัติ</label><input type="text" id="f-apr" placeholder="ชื่อผู้อนุมัติ"></div>
+    </div></div>
+    <div class="mfoot"><button class="btn btn-g" onclick="closeModal('modal-tx')">ยกเลิก</button><button class="btn btn-p" onclick="saveTx()">บันทึก</button></div>
+  </div>
+</div>
+
+<!-- MODAL: เพิ่มสินค้า -->
+<div class="moverlay" id="modal-product">
+  <div class="modal">
+    <div class="mhdr"><div><div class="mtit">เพิ่มสินค้าใหม่</div></div><span class="mcl" onclick="closeModal('modal-product')">×</span></div>
+    <div class="mbody"><div class="fg2">
+      <div class="fg"><label class="req">รหัสสินค้า</label><input type="text" id="np-code" placeholder="820001"></div>
+      <div class="fg"><label class="req">หมวดหมู่</label><select id="np-cat"><option value="เคมีภัณฑ์">เคมีภัณฑ์</option><option value="วัคซีน">วัคซีน</option><option value="เวชภัณฑ์">เวชภัณฑ์</option></select></div>
+      <div class="fg s2"><label class="req">ชื่อผลิตภัณฑ์</label><input type="text" id="np-name" placeholder="ชื่อสินค้า"></div>
+      <div class="fg"><label>ผู้ผลิต</label><input type="text" id="np-mfr" placeholder="—"></div>
+      <div class="fg"><label>ขนาดบรรจุ</label><input type="text" id="np-size" placeholder="—"></div>
+    </div></div>
+    <div class="mfoot"><button class="btn btn-g" onclick="closeModal('modal-product')">ยกเลิก</button><button class="btn btn-p" onclick="saveProduct()">เพิ่มสินค้า</button></div>
+  </div>
+</div>
+
+<!-- MODAL: ตั้งมินิมัม -->
+<div class="moverlay" id="modal-setmin">
+  <div class="modal" style="width:400px">
+    <div class="mhdr"><div><div class="mtit">ตั้งมินิมัมสต๊อก</div><div class="msub" id="sm-nm"></div></div><span class="mcl" onclick="closeModal('modal-setmin')">×</span></div>
+    <div class="mbody">
+      <div class="fg" style="margin-bottom:12px"><label class="req">เลือกหน่วยงาน</label><select id="sm-site" onchange="onSmSiteChange()"></select></div>
+      <div class="fg"><label class="req">จำนวนมินิมัม</label><input type="number" id="sm-val" min="0" placeholder="0"></div>
+    </div>
+    <div class="mfoot"><button class="btn btn-g" onclick="closeModal('modal-setmin')">ยกเลิก</button><button class="btn btn-p" onclick="saveMin()">บันทึก</button></div>
+  </div>
+</div>
+
+<!-- MODAL: PDF Export -->
+<div class="moverlay" id="modal-pdf">
+  <div class="modal modal-lg">
+    <div class="mhdr"><div><div class="mtit">📄 Export รายงาน PDF</div><div class="msub">เลือกประเภทรายงานที่ต้องการ</div></div><span class="mcl" onclick="closeModal('modal-pdf')">×</span></div>
+    <div class="mbody">
+      <div class="fg2" style="margin-bottom:14px">
+        <div class="fg"><label>ประเภทรายงาน</label>
+          <select id="pdf-type" onchange="updatePdfPreview()">
+            <option value="summary">รายงานสรุปสต๊อกทั้งหมด</option>
+            <option value="alerts">รายงานการแจ้งเตือน (วิกฤต)</option>
+            <option value="transactions">รายงานรับ-จ่ายประจำเดือน</option>
+            <option value="expiry">รายงานวันหมดอายุสินค้า</option>
+          </select>
+        </div>
+        <div class="fg"><label>บริษัท</label>
+          <select id="pdf-co">
+            <option value="AA">Arbor Acres TH</option>
+            <option value="RB">Ross Breeders Siam</option>
+            <option value="ALL">ทั้งสองบริษัท</option>
+          </select>
+        </div>
+      </div>
+      <div class="pdf-preview" id="pdf-preview">กำลังโหลดตัวอย่าง...</div>
+    </div>
+    <div class="mfoot">
+      <button class="btn btn-g" onclick="closeModal('modal-pdf')">ยกเลิก</button>
+      <button class="btn btn-pdf" onclick="generatePDF()">📄 สร้าง PDF</button>
+    </div>
+  </div>
+</div>
+
+<div class="tw-wrap" id="twrap"></div>
+
+<script>
+const COS={
+  AA:{id:'AA',name:'บริษัท อาร์เบอร์ เอเคอร์ส ประเทศไทย จำกัด',short:'Arbor Acres TH',sites:[
+    {id:'AA-A1',name:'ฟาร์ม A1',co:'AA'},{id:'AA-A2',name:'ฟาร์ม A2',co:'AA'},
+    {id:'AA-A3',name:'ฟาร์ม A3',co:'AA'},{id:'AA-A4',name:'ฟาร์ม A4',co:'AA'},
+    {id:'AA-A6',name:'ฟาร์ม A6',co:'AA'},{id:'AA-KB',name:'ฟาร์ม KB',co:'AA'},
+    {id:'AA-HP',name:'โรงฟักไข่เพชรบูรณ์ (PBH)',co:'AA'},
+  ]},
+  RB:{id:'RB',name:'บริษัท รอส บรีดเดอร์ส สยาม จำกัด',short:'Ross Breeders Siam',sites:[
+    {id:'RB-R1',name:'ฟาร์ม R1',co:'RB'},{id:'RB-R2',name:'ฟาร์ม R2',co:'RB'},
+    {id:'RB-R3',name:'ฟาร์ม R3',co:'RB'},{id:'RB-R4',name:'ฟาร์ม R4',co:'RB'},
+    {id:'RB-HN',name:'โรงฟักไข่นายม (NYH)',co:'RB'},
+  ]}
+};
+const ALL_SITES=[...COS.AA.sites,...COS.RB.sites];
+
+const PRODS_INIT=[
+  // ========== เคมีภัณฑ์ (จากไฟล์ยาฆ่าเชื้อ ม.ค.69) ==========
+  {code:'820001',name:'POTASSIUM PERMANGANATE',cat:'เคมีภัณฑ์',size:'50 กก./ถัง',unit:'กก.'},
+  {code:'820002',name:'SODIUM HYPOCHLORITE 10%',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ลิตร'},
+  {code:'820003',name:'ฟอร์มาลีน 40%',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ลิตร'},
+  {code:'820004',name:'เอ็มซี-เอ 30',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820005',name:'ไบโอเทน',cat:'เคมีภัณฑ์',size:'4 ลิตร/แกลลอน',unit:'แกลลอน'},
+  {code:'820006',name:'SULFUR POWER 350',cat:'เคมีภัณฑ์',size:'25 กก./กก.',unit:'กก.'},
+  {code:'820007',name:'ACID-PAK-4-WAY WATER SOLUBLE',cat:'เคมีภัณฑ์',size:'25 กก./กก.',unit:'กก.'},
+  {code:'820008',name:'ไบโอซิด - 30',cat:'เคมีภัณฑ์',size:'35 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820009',name:'อัลตราไซด์',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820010',name:'โบรโมเซฟต์-50',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820011',name:'AMMONIUM HYDROSIDE 27%',cat:'เคมีภัณฑ์',size:'25 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820012',name:'HYDROGEN PEROXIDE 50%',cat:'เคมีภัณฑ์',size:'30 กก./ถัง',unit:'กก.'},
+  {code:'820013',name:'ACETICACID',cat:'เคมีภัณฑ์',size:'30 ลิตร/ถัง',unit:'ลิตร'},
+  {code:'820014',name:'FOOD SAFE',cat:'เคมีภัณฑ์',size:'25 กก./ถัง',unit:'กก.'},
+  {code:'820015',name:'ฟิลไวรัส',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820016',name:'ไบโอคลีน',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820017',name:'เวอร์เทค เอส',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820018',name:'VIROCID (ไวโรซิด)',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820019',name:'SAL CURB',cat:'เคมีภัณฑ์',size:'25 กก./ถัง',unit:'กก.'},
+  {code:'820020',name:'ลองไลฟ์ 250 เอส',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820021',name:'SELKO-PH',cat:'เคมีภัณฑ์',size:'25 กก./ถัง',unit:'กก.'},
+  {code:'820022',name:'เวอร์ คอน เอส',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820023',name:'Suramox 50%',cat:'เคมีภัณฑ์',size:'10 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820024',name:'CID 2000',cat:'เคมีภัณฑ์',size:'10 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820025',name:'คอปเปอร์ซัลเฟต',cat:'เคมีภัณฑ์',size:'25 กก./ถัง',unit:'กก.'},
+  {code:'820026',name:'เวอร์เทค เอส เอฟ',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820027',name:'Omnicide (ออมนิไซด์)',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820028',name:'GPC 8',cat:'เคมีภัณฑ์',size:'25 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820029',name:'เรมีดอร์ เฮฟวี่ดิวตี้',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820030',name:'คิต สตาร์ท',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820031',name:'ไวรูสนิป',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820032',name:'เรมีดอร์ เอ็กซ์ตร้า',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820033',name:'อินเตอร์ ค๊อกคักส์',cat:'เคมีภัณฑ์',size:'10 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820035',name:'ไบโอเจล',cat:'เคมีภัณฑ์',size:'10 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820036',name:'คลอรีนน้ำ 10%',cat:'เคมีภัณฑ์',size:'25 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820037',name:'ฟอร์เดอร์ WG',cat:'เคมีภัณฑ์',size:'100 กรัม/ขวด',unit:'ขวด'},
+  {code:'820038',name:'พิปพร์อท เพาเดอร์',cat:'เคมีภัณฑ์',size:'150 กรัม/ถุง',unit:'ถุง'},
+  {code:'820039',name:'อาเจนด้า',cat:'เคมีภัณฑ์',size:'1 ลิตร/ขวด',unit:'ขวด'},
+  {code:'820040',name:'สกาย',cat:'เคมีภัณฑ์',size:'500 กรัม/ขวด',unit:'ขวด'},
+  {code:'820041',name:'ราคูมินเพรส (BUZZARD)',cat:'เคมีภัณฑ์',size:'10 กก./ถัง',unit:'กก.'},
+  {code:'820042',name:'ไลอ๊อก 6000',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820043',name:'ออมนิไซด์ (Omnicide)',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'ถัง'},
+  {code:'820044',name:'เซอร์ทอล โซลูชั่น',cat:'เคมีภัณฑ์',size:'5 ลิตร/แกลลอน',unit:'แกลลอน'},
+  {code:'820045',name:'คอนแทรค บล๊อคซ์',cat:'เคมีภัณฑ์',size:'8.18 กก./ถัง',unit:'กรัม'},
+  {code:'820046',name:'ซิงค์ ฟอสไฟด์ 80',cat:'เคมีภัณฑ์',size:'100 กรัม/กระป๋อง',unit:'กระป๋อง'},
+  {code:'820047',name:'เดเทีย เพสท์ เบท',cat:'เคมีภัณฑ์',size:'5 กก./ถัง',unit:'กรัม'},
+  {code:'820048',name:'ยาฆ่าหญ้า ไกลโฟเซต',cat:'เคมีภัณฑ์',size:'4 ลิตร/แกลลอน',unit:'แกลลอน'},
+  {code:'820049',name:'แอ็ดเลอร์โฟม',cat:'เคมีภัณฑ์',size:'20 ลิตร/ถัง',unit:'แกลลอน'},
+  // ========== วัคซีน (จากไฟล์วัคซีน มี.ค.69) ==========
+  {code:'11000037',name:'วัคซีนโนบิลิส ND บรอยเลอร์',cat:'วัคซีน',size:'5,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11017611',name:'วัคซีนไบโอรอล เอช-120 นีโอ (1,000 โด๊ส)',cat:'วัคซีน',size:'1,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11017612',name:'วัคซีนไบโอรอล H120 (5,000 โด๊ส)',cat:'วัคซีน',size:'5,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11018488',name:'วัคซีนโนบิลิสริสมาแว็ค CVI 988 (1,000 โด๊ส)',cat:'วัคซีน',size:'1,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11018489',name:'วัคซีนโนบิลิสริสมาแว็ค CVI 988 (2,000 โด๊ส)',cat:'วัคซีน',size:'2,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11019408',name:'วัคซีนบรอยเลอร์มูน',cat:'วัคซีน',size:'500 ซีซี/ขวด',unit:'ขวด'},
+  {code:'11020220',name:'วัคซีนโนบิลิส รีโอ 2177',cat:'วัคซีน',size:'1,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11020551',name:'วัคซีนไลวาค๊อค คิว (1,000 โด๊ส)',cat:'วัคซีน',size:'1,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11020552',name:'วัคซีนไลวาค๊อค คิว (5,000 โด๊ส)',cat:'วัคซีน',size:'5,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11020746',name:'วัคซีนเว็คเตอร์มูน HVT NDV (2,000 โด๊ส)',cat:'วัคซีน',size:'2,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11021149',name:'วัคซีนเว็คเตอร์มูน HVT NDV (4,000 โด๊ส)',cat:'วัคซีน',size:'4,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11023737',name:'วัคซีนโนบิลิสริส ไอบี 4-91 (1,000 โด๊ส)',cat:'วัคซีน',size:'1,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11025611',name:'วัคซีนเอวินิว นีโอ (1,000 โด๊ส)',cat:'วัคซีน',size:'1,000 โด๊ส/เม็ด',unit:'เม็ด'},
+  {code:'11025612',name:'วัคซีนเอวินิว นีโอ (2,000 โด๊ส)',cat:'วัคซีน',size:'2,000 โด๊ส/เม็ด',unit:'เม็ด'},
+  {code:'11027378',name:'วัคซีนไบโอรอล เอช-120 นีโอ (2,000 โด๊ส)',cat:'วัคซีน',size:'2,000 โด๊ส/เม็ด',unit:'เม็ด'},
+  {code:'11034706',name:'วัคซีนเอวาลอน (1,000 โด๊ส)',cat:'วัคซีน',size:'1,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11035010',name:'วัคซีนเอวาลอน (5,000 โด๊ส)',cat:'วัคซีน',size:'5,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11035630',name:'Innovax ND-IBD (4,000 โด๊ส)',cat:'วัคซีน',size:'4,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11036082',name:'โนบิลิส ไอบี ไพรโมคิวเอ็กซ์ (1,000 โด๊ส)',cat:'วัคซีน',size:'1,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11036084',name:'โนบิลิส ไอบี ไพรโมคิวเอ็กซ์ (10,000 โด๊ส)',cat:'วัคซีน',size:'10,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11036187',name:'วัคซีนโพลแวค ไอบี คิวเอ็กซ์ (5,000 โด๊ส)',cat:'วัคซีน',size:'5,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11036188',name:'วัคซีนโพลแวค ไอบี คิวเอ็กซ์ (10,000 โด๊ส)',cat:'วัคซีน',size:'10,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11043306',name:'วัคซีน SCOCVAC 4',cat:'วัคซีน',size:'1,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11043519',name:'วัคซีนโนบิลิสริส ไอบี 4-91 (2,500 โด๊ส)',cat:'วัคซีน',size:'2,500 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11043800',name:'Coccivac-D2 (1,000 โด๊ส)',cat:'วัคซีน',size:'1,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11043801',name:'Coccivac-D2 (5,000 โด๊ส)',cat:'วัคซีน',size:'5,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11018944',name:'ซีแวค ทรานสมูน',cat:'วัคซีน',size:'2,000 โด๊ส/ขวด',unit:'ขวด'},
+  {code:'11023762',name:'โนบิลิส รีสมาแวค+ซีเอ126',cat:'วัคซีน',size:'1,000 โด๊ส/ขวด',unit:'ขวด'},
+  // ========== เวชภัณฑ์ (จากไฟล์วัคซีน มี.ค.69) ==========
+  {code:'11015298',name:'ไบทริล 10%',cat:'เวชภัณฑ์',size:'1,000 มล./ขวด',unit:'ขวด'},
+  {code:'11016883',name:'มัยบาฟล็อกซ์',cat:'เวชภัณฑ์',size:'1,000 มล./ขวด',unit:'ขวด'},
+  {code:'11002498',name:'พาราซิลลิน เอสพี',cat:'เวชภัณฑ์',size:'1 กก./กระป๋อง',unit:'กระป๋อง'},
+];
+
+// ข้อมูลสต๊อก โรงฟักไข่เพชรบูรณ์ (AA-HP) จาก Excel มี.ค. 2569
+const HP_STOCK_INIT = [
+  // ===== เคมีภัณฑ์ (จากไฟล์ยาฆ่าเชื้อ ม.ค.69) =====
+  {code:'820001', qty:85.62},  // POTASSIUM PERMANGANATE
+  {code:'820003', qty:8},      // ฟอร์มาลีน 40%
+  {code:'820018', qty:4},      // ไวโรซิด (VIROCID)
+  {code:'820042', qty:27},     // ไลอ๊อก 6000
+  {code:'820028', qty:0},      // GPC 8
+  {code:'820043', qty:8},      // ออมนิไซด์
+  {code:'820044', qty:10},     // เซอร์ทอล โซลูชั่น
+  {code:'820036', qty:8},      // คลอรีน/คลอลีน 10%
+  {code:'820005', qty:0},      // ไบโอเทน
+  {code:'820024', qty:0},      // CID 2000
+  {code:'820029', qty:0},      // เรมีดอร์ เฮฟวี่ดิวตี้
+  {code:'820032', qty:0},      // เรมีดอร์ เอ็กซ์ตร้า
+  {code:'820033', qty:0},      // อินเตอร์ ค๊อกคักส์
+  {code:'820035', qty:0},      // ไบโอเจล
+  {code:'820037', qty:0},      // ฟอร์เดอร์ WG
+  {code:'820038', qty:0},      // พิปพร์อท เพาเดอร์
+  {code:'820039', qty:0},      // อาเจนด้า
+  {code:'820040', qty:0},      // สกาย
+  // ===== วัคซีน (จากไฟล์วัคซีน มี.ค.69) =====
+  {code:'11000037', qty:28},   // วัคซีนโนบิลิส ND บรอยเลอร์
+  {code:'11027378', qty:18.7}, // วัคซีนไบโอรอล เอช-120 นีโอ (2,000 โด๊ส/เม็ด)
+  {code:'11018488', qty:0},    // วัคซีนโนบิลิสริสมาแว็ค CVI 988 (1,000 โด๊ส)
+  {code:'11020220', qty:263},  // วัคซีนโนบิลิส รีโอ 2177
+  {code:'11020551', qty:5},    // วัคซีนไลวาค๊อค คิว (1,000 โด๊ส)
+  {code:'11021149', qty:30},   // วัคซีนเว็คเตอร์มูน HVT NDV (4,000 โด๊ส)
+  {code:'11025612', qty:47.3}, // วัคซีนเอวินิว นีโอ
+  {code:'11035010', qty:0},    // วัคซีนเอวาลอน (5,000 โด๊ส)
+  {code:'11035630', qty:164},  // วัคซีนอินโนแว็ก (INNOVAX ND-IBD)
+  {code:'11036188', qty:9},    // วัคซีนโพลแวค ไอบี คิวเอ็กซ์
+  {code:'11043306', qty:0},    // วัคซีนสค็อกแวค 4
+  {code:'11043519', qty:75},   // วัคซีนโนบิลิสริส IB 4-91
+  {code:'11043801', qty:0},    // วัคซีนค๊อกซิแว็ค D2
+  // ===== เวชภัณฑ์ =====
+  {code:'11016883', qty:49},   // มัยบาฟล็อกซ์
+  {code:'11015298', qty:44.1}, // ไบทริล 10%
+];
+
+// สินค้าใหม่ที่มีในเอกสาร HP แต่ยังไม่มีใน master list
+const PRODS_HP_NEW = [
+  {code:'HP-C001', name:'VIROCID', cat:'เคมีภัณฑ์', size:'20 ลิตร/ถัง'},
+  {code:'HP-C002', name:'เซอร์ทอล โซลูชั่น', cat:'เคมีภัณฑ์', size:'5 ลิตร/แกลลอน'},
+  {code:'HP-C003', name:'BUZZARD', cat:'เคมีภัณฑ์', size:'10 กก./ถัง'},
+  {code:'HP-C004', name:'คอนแทรค บล๊อคซ์', cat:'เคมีภัณฑ์', size:'8.18 กก./ถัง'},
+  {code:'HP-C005', name:'ซิงค์ ฟอสไฟด์ 80', cat:'เคมีภัณฑ์', size:'100 กรัม/กระป๋อง'},
+  {code:'HP-C006', name:'เดเทีย เพสท์ เบท', cat:'เคมีภัณฑ์', size:'5 กก./ถัง'},
+  {code:'HP-C007', name:'ยาฆ่าหญ้า ไกลโฟเซต', cat:'เคมีภัณฑ์', size:'4 ลิตร/แกลลอน'},
+  {code:'HP-C008', name:'แอ็ดเลอร์โฟม', cat:'เคมีภัณฑ์', size:'20 ลิตร/ถัง'},
+  {code:'HP-V001', name:'วัคซีนโนบิลิส รีโอ 2177', cat:'วัคซีน', size:'1,000 โด๊ส/ขวด'},
+  {code:'HP-V002', name:'วัคซีนเว็คเตอร์มูน HVT NDV (4,000 โด๊ส)', cat:'วัคซีน', size:'4,000 โด๊ส/ขวด'},
+  {code:'HP-V003', name:'วัคซีนไลวาค๊อค คิว (5,000 โด๊ส)', cat:'วัคซีน', size:'5,000 โด๊ส/ขวด'},
+  {code:'HP-V004', name:'Innovax ND-IBD', cat:'วัคซีน', size:'4,000 โด๊ส/ขวด'},
+  {code:'HP-V005', name:'วัคซีนโนบิลิสริส IB 4-91 (2,500 โด๊ส)', cat:'วัคซีน', size:'2,500 โด๊ส/ขวด'},
+  {code:'HP-V006', name:'วัคซีนโพลแวค ไอบี คิวเอ็กซ์ (10,000 โด๊ส)', cat:'วัคซีน', size:'10,000 โด๊ส/ขวด'},
+  {code:'HP-M001', name:'มัยบาฟล็อกซ์', cat:'เวชภัณฑ์', size:'1,000 มล./ขวด'},
+];
+
+// HP stock qty map for new codes
+const HP_NEW_QTY = {
+  'HP-C001': 4,    // VIROCID
+  'HP-C002': 10,   // เซอร์ทอล โซลูชั่น
+  'HP-C003': 16.2, // BUZZARD
+  'HP-C004': 1130, // คอนแทรค บล๊อคซ์
+  'HP-C005': 0,    // ซิงค์ ฟอสไฟด์ 80
+  'HP-C006': 0,    // เดเทีย เพสท์ เบท
+  'HP-C007': 1,    // ยาฆ่าหญ้า ไกลโฟเซต
+  'HP-C008': 10,   // แอ็ดเลอร์โฟม
+  'HP-V001': 263,  // วัคซีนโนบิลิส รีโอ 2177
+  'HP-V002': 30,   // วัคซีนเว็คเตอร์มูน HVT NDV (4k)
+  'HP-V003': 16,   // วัคซีนไลวาค๊อค คิว (5k)
+  'HP-V004': 164,  // Innovax ND-IBD
+  'HP-V005': 75,   // วัคซีนโนบิลิสริส IB 4-91 (2,500)
+  'HP-V006': 9,    // วัคซีนโพลแวค ไอบี คิวเอ็กซ์ (10k)
+  'HP-M001': 49,   // มัยบาฟล็อกซ์
+};
+
+const PILOT_SITES = ['AA-HP', 'RB-HN'];
+const PILOT_LABELS = {'AA-HP':'PBH — โรงฟักไข่เพชรบูรณ์','RB-HN':'NYH — โรงฟักไข่นายม'};
+const PILOT_COLORS = {'AA-HP':'#0f4c81','RB-HN':'#0f4c35'};
+let pilotActive = 'BOTH'; // AA-HP | RB-HN | BOTH
+let txs=[];
+let mins={};
+
+// =================================================================
+//  GOOGLE SHEETS BACKEND
+// =================================================================
+let GAS_URL = localStorage.getItem('gas_url') || '';
+let currentUser = localStorage.getItem('gas_user') || '';
+let isSyncing = false;
+
+// --- UI helpers ---
+function showSetupOverlay(){
+  document.getElementById('gs-overlay').style.display='flex';
+}
+function hideSetupOverlay(){
+  document.getElementById('gs-overlay').style.display='none';
+}
+function setGsStatus(msg, type='info'){
+  const el = document.getElementById('gs-msg');
+  el.textContent = msg;
+  el.className = 'gs-status ' + type;
+  el.style.display = 'block';
+}
+function setSyncBadge(online){
+  const b=document.getElementById('sync-badge');
+  const d=document.getElementById('sync-dot');
+  const t=document.getElementById('sync-txt');
+  if(online){b.className='online-badge';d.className='sync-dot';t.textContent=currentUser||'Online';}
+  else{b.className='online-badge off';d.className='sync-dot off';t.textContent='Offline';}
+}
+
+// --- API call ---
+async function gasCall(action, payload={}){
+  const res = await fetch(GAS_URL, {
+    method:'POST',
+    body: JSON.stringify({action, user:currentUser, ...payload})
+  });
+  const json = await res.json();
+  if(json.error) throw new Error(json.error);
+  return json;
+}
+
+// --- Load all data from Sheets ---
+async function loadFromSheets(){
+  setGsStatus('กำลังโหลดข้อมูลจาก Google Sheets...','info');
+  isSyncing = true;
+  try{
+    const data = await gasCall('load');
+    txs   = data.txs   || [];
+    mins  = data.mins  || {};
+    // Only override prods if Sheets has data
+    if(data.prods && data.prods.length > 0) prods = data.prods;
+    // First run: push PRODS_INIT + HP stock if Sheets is empty
+    if(txs.length === 0){
+      await seedInitialData();
+    }
+    setSyncBadge(true);
+    setGsStatus('โหลดข้อมูลสำเร็จ ✓','ok');
+    isSyncing = false;
+    hideSetupOverlay();
+    document.getElementById('pilot-banner').style.display='none';
+    switchCo('AA'); showPage('dashboard');
+    setTimeout(()=>toast('🔬 Pilot Mode พร้อมใช้งาน',''),800);
+  } catch(e){
+    isSyncing = false;
+    setSyncBadge(false);
+    setGsStatus('โหลดข้อมูลไม่สำเร็จ: '+e.message,'err');
+  }
+}
+
+// --- Save to Sheets (called after every write) ---
+async function save(){
+  if(!GAS_URL || isSyncing) return;
+  isSyncing = true;
+  setSyncBadge(false);
+  document.getElementById('sync-txt').textContent='กำลัง Sync...';
+  try{
+    await gasCall('save', {txs, mins, prods});
+    setSyncBadge(true);
+  } catch(e){
+    toast('⚠ Sync ไม่สำเร็จ: '+e.message,'error');
+    setSyncBadge(false);
+  }
+  isSyncing = false;
+}
+
+// --- Seed initial data to Sheets on first run ---
+async function seedInitialData(){
+  const refDate='2026-03-31'; let idBase=1700000000000;
+  PRODS_HP_NEW.forEach(p=>{if(!prods.find(x=>x.code===p.code)) prods.push(p);});
+  HP_STOCK_INIT.forEach(item=>{
+    if(item.qty>0) txs.push({id:idBase++,date:refDate,type:'in',code:item.code,qty:item.qty,siteId:'AA-HP',lot:'ยอดคงเหลือ ณ 31 มี.ค.69',mfDate:'',expDate:'',mfr:'',requester:'ระบบนำเข้าข้อมูล',approver:'Excel Import'});
+  });
+  Object.entries(HP_NEW_QTY).forEach(([code,qty])=>{
+    if(qty>0) txs.push({id:idBase++,date:refDate,type:'in',code,qty,siteId:'AA-HP',lot:'ยอดคงเหลือ ณ 31 มี.ค.69',mfDate:'',expDate:'',mfr:'',requester:'ระบบนำเข้าข้อมูล',approver:'Excel Import'});
+  });
+  await gasCall('save', {txs, mins, prods});
+  toast(`✅ นำเข้าสต๊อก PBH แล้ว (${txs.filter(t=>t.siteId==='AA-HP').length} รายการ)`,'success');
+}
+
+// --- Setup form handlers ---
+function gsSaveConfig(){
+  const url = document.getElementById('gs-url').value.trim();
+  const user = document.getElementById('gs-user').value.trim();
+  if(!url||!user){setGsStatus('กรุณากรอกให้ครบ','err');return;}
+  GAS_URL = url; currentUser = user;
+  localStorage.setItem('gas_url', url);
+  localStorage.setItem('gas_user', user);
+  loadFromSheets();
+}
+function gsClearConfig(){
+  localStorage.removeItem('gas_url');
+  localStorage.removeItem('gas_user');
+  location.reload();
+}
+function gsLogout(){
+  localStorage.removeItem('gas_user');
+  location.reload();
+}
+
+// =================================================================
+//  INJECT HP (legacy — used by seedInitialData now)
+// =================================================================
+function injectHPStock(){ /* handled by seedInitialData */ }
+
+let curCo='AA',curPage='dashboard',dashTab='low',fSite=null;
+let sP=1,tP=1,pP=1;const R=15;
+let smCode='';
+let chartInstances={};
+let aiHistory=[];
+
+function today(){return new Date().toISOString().split('T')[0];}
+function fmtD(d){if(!d)return'—';try{return new Date(d).toLocaleDateString('th-TH',{day:'2-digit',month:'2-digit',year:'numeric'});}catch{return d;}}
+function getSites(){return curCo==='ALL'?ALL_SITES:COS[curCo].sites;}
+function getSite(id){return ALL_SITES.find(s=>s.id===id);}
+
+function gSiteStock(code,siteId){let i=0,o=0;txs.filter(t=>t.code===code&&t.siteId===siteId).forEach(t=>{t.type==='in'?i+=t.qty:o+=t.qty;});return{in:i,out:o,bal:i-o};}
+function gTotStock(code,sites){let i=0,o=0;const ids=sites.map(s=>s.id);txs.filter(t=>t.code===code&&ids.includes(t.siteId)).forEach(t=>{t.type==='in'?i+=t.qty:o+=t.qty;});return{in:i,out:o,bal:i-o};}
+function gLastExp(code,sites){const ids=(sites||ALL_SITES).map(s=>s.id);const e=txs.filter(t=>t.code===code&&ids.includes(t.siteId)&&t.type==='in'&&t.expDate).map(t=>t.expDate).sort();return e.length?e[e.length-1]:null;}
+function gMin(code,siteId){return mins[code+':'+siteId]||0;}
+
+function gSiteStatus(code,siteId){
+  const s=gSiteStock(code,siteId);const exp=gLastExp(code,[{id:siteId}]);
+  const td=new Date();td.setHours(0,0,0,0);
+  if(exp){const ed=new Date(exp);if(ed<=td)return'expired';if((ed-td)/86400000<=30)return'near';}
+  const mn=gMin(code,siteId);if(mn>0&&s.bal<=mn)return'low';return'ok';
+}
+function gOverallStatus(code,sites){
+  const ss=sites.map(s=>gSiteStatus(code,s.id));
+  if(ss.includes('expired'))return'expired';if(ss.includes('low'))return'low';if(ss.includes('near'))return'near';return'ok';
+}
+
+function stBdg(st){
+  if(st==='expired')return'<span class="bdg bexp">🔴 หมดอายุแล้ว</span>';
+  if(st==='near')return'<span class="bdg bnear">🟡 ใกล้หมดอายุ</span>';
+  if(st==='low')return'<span class="bdg blow">🔴 สต๊อกต่ำ</span>';
+  return'<span class="bdg bok">🟢 ปกติ</span>';
+}
+function catBdg(c){if(c==='เคมีภัณฑ์')return'<span class="bdg bchem">เคมีภัณฑ์</span>';if(c==='วัคซีน')return'<span class="bdg bvac">วัคซีน</span>';return'<span class="bdg bmed">เวชภัณฑ์</span>';}
+
+// SWITCH CO
+function switchCo(co){
+  curCo=co;fSite=null;
+  document.getElementById('cb-aa').className='co-btn'+(co==='AA'?' caa':'');
+  document.getElementById('cb-rb').className='co-btn'+(co==='RB'?' crb':'');
+  document.getElementById('cb-all').className='co-btn'+(co==='ALL'?' call':'');
+  const r=document.documentElement.style;
+  if(co==='RB'){r.setProperty('--pri','#0f4c35');r.setProperty('--pril','#1a6b4a');r.setProperty('--prip','#e8f5ef');}
+  else{r.setProperty('--pri','#0f4c81');r.setProperty('--pril','#1a65b0');r.setProperty('--prip','#e8f1fb');}
+  const nm=co==='ALL'?'ทั้งสองบริษัท':co==='AA'?'อาร์เบอร์ เอเคอร์ส TH':'รอส บรีดเดอร์ส สยาม';
+  document.getElementById('sb-co-nm').textContent=nm;
+  buildSbSites();renderPage(curPage);
+}
+
+function buildSbSites(){
+  document.getElementById('sb-sl').textContent=curCo==='ALL'?'หน่วยงานทั้งหมด':'หน่วยงาน '+curCo;
+  document.getElementById('sb-sites').innerHTML=getSites().map(s=>{
+    const isPilot=PILOT_SITES.includes(s.id);
+    return`<div class="si${fSite===s.id?' active':''}${isPilot?' si-pilot':''}" onclick="setSite('${s.id}')"><span class="sdot" style="background:${s.co==='AA'?'#4a9fd4':'#4ab87a'}${isPilot?';box-shadow:0 0 0 3px rgba(139,92,246,0.4)':''}"></span><span>${s.name}</span></div>`;
+  }).join('');
+}
+
+function setSite(id){fSite=fSite===id?null:id;buildSbSites();showPage('stock');}
+
+// NAV
+const TITLES={dashboard:['Dashboard สต๊อก','ภาพรวมทุกหน่วยงาน'],sites:['ภาพรวมหน่วยงาน','สต๊อกแยกตามฟาร์มและโรงฟัก'],stock:['สต๊อกสินค้า','ยอดคงเหลือและสถานะสินค้า'],transactions:['บันทึกรับ-จ่าย','ประวัติรับเข้า-จ่ายออก'],charts:['กราฟ & ชาร์ต','วิเคราะห์ข้อมูลแบบ Visual'],ai:['AI วิเคราะห์สต๊อก','ผู้ช่วย AI สำหรับจัดการสต๊อก'],pilot:['🔬 Pilot Dashboard','PBH & NYH'],products:['รายการสินค้า','Master List ผลิตภัณฑ์'],alerts:['การแจ้งเตือน','สินค้าที่ต้องดำเนินการด่วน']};
+function showPage(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  const nm={dashboard:0,sites:1,stock:2,transactions:3,charts:4,ai:5,pilot:6,products:7,alerts:8};
+  document.querySelectorAll('.ni')[nm[p]||0]?.classList.add('active');
+  document.getElementById('tb-title').textContent=TITLES[p][0];
+  let sub=fSite?`กรองตาม: ${getSite(fSite)?.name}`:TITLES[p][1];
+  document.getElementById('tb-sub').textContent=sub;
+  // Show/hide pilot banner
+  const banner=document.getElementById('pilot-banner');
+  if(p==='pilot'){banner.style.display='flex';}else{banner.style.display='none';}
+  curPage=p;renderPage(p);
+}
+function renderPage(p){
+  if(p==='dashboard')renderDash();
+  if(p==='sites')renderSites();
+  if(p==='stock'){sP=1;renderStock();}
+  if(p==='transactions'){tP=1;renderTx();}
+  if(p==='charts')renderCharts();
+  if(p==='pilot')renderPilot();
+  if(p==='products'){pP=1;renderProds();}
+  if(p==='alerts')renderAlerts();
+  updateBadges();
+}
+
+// ======== PILOT FUNCTIONS ========
+function pilotFocus(id){
+  pilotActive=id;
+  ['hp','hn','both'].forEach(k=>document.getElementById('pc-'+k)?.classList.remove('active'));
+  const map={'AA-HP':'hp','RB-HN':'hn','BOTH':'both'};
+  document.getElementById('pc-'+map[id])?.classList.add('active');
+  renderPilot();
+}
+
+function renderPilot(){
+  const el=document.getElementById('pilot-c');
+  const activeSites = pilotActive==='BOTH'
+    ? PILOT_SITES.map(id=>ALL_SITES.find(s=>s.id===id))
+    : [ALL_SITES.find(s=>s.id===pilotActive)];
+
+  // Combined KPIs
+  let totProds=0,totLow=0,totExp=0,totNear=0,totTx=0;
+  activeSites.forEach(site=>{
+    const sp=prods.map(p=>gSiteStatus(p.code,site.id));
+    totLow+=sp.filter(s=>s==='low').length;
+    totExp+=sp.filter(s=>s==='expired').length;
+    totNear+=sp.filter(s=>s==='near').length;
+    totTx+=txs.filter(t=>t.siteId===site.id).length;
+    totProds+=prods.filter(p=>gSiteStock(p.code,site.id).bal>0).length;
+  });
+
+  // KPI row
+  let kpiHtml=`<div class="pilot-kpi-row">
+    <div class="pilot-kpi"><div class="pilot-kpi-v">${activeSites.length}</div><div class="pilot-kpi-l">หน่วยงาน Pilot</div></div>
+    <div class="pilot-kpi"><div class="pilot-kpi-v" style="color:#1a6b4a">${totProds}</div><div class="pilot-kpi-l">สินค้ามีสต๊อก</div></div>
+    <div class="pilot-kpi"><div class="pilot-kpi-v" style="color:#c0392b">${totLow}</div><div class="pilot-kpi-l">สต๊อกต่ำ</div></div>
+    <div class="pilot-kpi"><div class="pilot-kpi-v" style="color:#d97706">${totExp+totNear}</div><div class="pilot-kpi-l">ใกล้/หมดอายุ</div></div>
+    <div class="pilot-kpi"><div class="pilot-kpi-v">${totTx}</div><div class="pilot-kpi-l">รายการรับ-จ่าย</div></div>
+  </div>`;
+
+  // Per-site detail cards
+  let siteCards = activeSites.map(site=>{
+    const sp=prods.map(p=>({p,st:gSiteStatus(p.code,site.id),bal:gSiteStock(p.code,site.id).bal}));
+    const hasStock=sp.filter(x=>x.bal>0).length;
+    const low=sp.filter(x=>x.st==='low');
+    const exp=sp.filter(x=>x.st==='expired');
+    const near=sp.filter(x=>x.st==='near');
+    const ok=sp.filter(x=>x.st==='ok'&&x.bal>0).length;
+    const siteTx=txs.filter(t=>t.siteId===site.id);
+    const lastTx=siteTx.sort((a,b)=>b.id-a.id)[0];
+    const co=COS[site.co];
+    const pct=hasStock>0?Math.round(ok/hasStock*100):0;
+    const lowRows=low.slice(0,5).map(x=>`<div class="pilot-sc-row"><span>${x.p.name.length>22?x.p.name.slice(0,22)+'…':x.p.name}</span><span class="pilot-sc-v" style="color:#c0392b">${x.bal}</span></div>`).join('');
+    const expRows=[...exp,...near].slice(0,3).map(x=>`<div class="pilot-sc-row"><span>${x.p.name.length>22?x.p.name.slice(0,22)+'…':x.p.name}</span><span class="pilot-sc-v" style="color:#d97706">${stBdg(x.st)}</span></div>`).join('');
+
+    return`<div class="pilot-sc">
+      <div class="pilot-sc-hdr">
+        <span class="bdg ${site.co==='AA'?'baa':'brb'}" style="font-size:10px">${site.co}</span>
+        <span style="font-size:13px;font-weight:800">${site.name}</span>
+        <span class="bdg bdg-pilot" style="font-size:10px;margin-left:auto">🔬 Pilot</span>
+      </div>
+      <div class="pilot-sc-row"><span>สินค้ามีสต๊อก</span><span class="pilot-sc-v">${hasStock} รายการ</span></div>
+      <div class="pilot-sc-row"><span>สถานะปกติ</span><span class="pilot-sc-v" style="color:#1a6b4a">${ok} รายการ</span></div>
+      <div class="pilot-sc-row"><span>🔴 สต๊อกต่ำ</span><span class="pilot-sc-v" style="color:#c0392b">${low.length} รายการ</span></div>
+      <div class="pilot-sc-row"><span>⏰ ใกล้/หมดอายุ</span><span class="pilot-sc-v" style="color:#d97706">${exp.length+near.length} รายการ</span></div>
+      <div class="pilot-sc-row"><span>บันทึกรับ-จ่าย</span><span class="pilot-sc-v">${siteTx.length} ครั้ง</span></div>
+      <div class="pilot-sc-row"><span>อัปเดตล่าสุด</span><span class="pilot-sc-v" style="font-family:var(--font);font-size:11px">${lastTx?fmtD(lastTx.date):'ยังไม่มี'}</span></div>
+      <div class="pilot-bar"><div class="pilot-bar-f" style="width:${pct}%"></div></div>
+      <div style="font-size:10px;color:var(--g400);margin-top:3px;text-align:right">${pct}% สินค้าสถานะปกติ</div>
+      ${low.length>0?`<div style="margin-top:8px;font-size:11px;font-weight:800;color:#c0392b;margin-bottom:3px">📉 สต๊อกต่ำสุด 5 รายการ</div>${lowRows}`:''}
+      ${(exp.length+near.length)>0?`<div style="margin-top:8px;font-size:11px;font-weight:800;color:#d97706;margin-bottom:3px">⏰ ใกล้/หมดอายุ</div>${expRows}`:''}
+      <div style="margin-top:10px;display:flex;gap:6px;">
+        <button class="btn btn-g btn-sm" style="flex:1;font-size:11px" onclick="setSite('${site.id}');showPage('stock')">📦 ดูสต๊อก</button>
+        <button class="btn btn-p btn-sm" style="font-size:11px" onclick="fSite='${site.id}';openModal('modal-tx')">+ บันทึก</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Stock table for pilot sites
+  const pilotSiteObjs=activeSites;
+  const pilotProds=prods.filter(p=>pilotSiteObjs.some(s=>gSiteStock(p.code,s.id).bal>0||gOverallStatus(p.code,pilotSiteObjs)==='low'||gOverallStatus(p.code,pilotSiteObjs)==='expired'||gOverallStatus(p.code,pilotSiteObjs)==='near')).slice(0,20);
+
+  let tableRows='';
+  if(pilotActive==='BOTH'){
+    tableRows=pilotProds.map(p=>{
+      const hp=gSiteStock(p.code,'AA-HP');
+      const hn=gSiteStock(p.code,'RB-HN');
+      const stHp=gSiteStatus(p.code,'AA-HP');
+      const stHn=gSiteStatus(p.code,'RB-HN');
+      const rc=([stHp,stHn].includes('expired')||[stHp,stHn].includes('low'))?'rd':[stHp,stHn].includes('near')?'rw':'';
+      return`<tr class="${rc}"><td class="tc">${p.code}</td><td><div class="tn">${p.name}</div></td><td>${catBdg(p.cat)}</td>
+        <td class="tnum ${hp.bal===0?'z':stHp==='low'?'lo':'ok'}">${hp.bal||0}</td><td>${stBdg(stHp)}</td>
+        <td class="tnum ${hn.bal===0?'z':stHn==='low'?'lo':'ok'}">${hn.bal||0}</td><td>${stBdg(stHn)}</td>
+      </tr>`;
+    }).join('');
+  } else {
+    const sid=pilotActive;
+    tableRows=prods.filter(p=>gSiteStock(p.code,sid).bal>0||gSiteStatus(p.code,sid)!=='ok').slice(0,30).map(p=>{
+      const s=gSiteStock(p.code,sid);const st=gSiteStatus(p.code,sid);const rc=st==='expired'||st==='low'?'rd':st==='near'?'rw':'';
+      return`<tr class="${rc}"><td class="tc">${p.code}</td><td><div class="tn">${p.name}</div></td><td>${catBdg(p.cat)}</td><td class="tnum ${s.bal===0?'z':st==='low'?'lo':'ok'}">${s.bal}</td><td>${stBdg(st)}</td></tr>`;
+    }).join('');
+  }
+  const thCompare=pilotActive==='BOTH'
+    ?`<th>รหัส</th><th>ชื่อสินค้า</th><th>หมวด</th><th style="text-align:right">คงเหลือ (PBH)</th><th>สถานะ</th><th style="text-align:right">คงเหลือ (NYH)</th><th>สถานะ</th>`
+    :`<th>รหัส</th><th>ชื่อสินค้า</th><th>หมวด</th><th style="text-align:right">คงเหลือ</th><th>สถานะ</th>`;
+
+  el.innerHTML=`
+    <div class="pilot-dash">
+      <div class="pilot-dash-title">🔬 Pilot Dashboard — ภาพรวมหน่วยงาน Pilot</div>
+      ${kpiHtml}
+      <div class="pilot-compare">${siteCards}</div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <div class="sectit">📋 ตารางสต๊อก Pilot Sites</div>
+      <button class="btn btn-pdf btn-sm" onclick="openPdfModal()">📄 Export PDF</button>
+    </div>
+    <div class="tw"><table><thead><tr>${thCompare}</tr></thead><tbody>
+      ${tableRows||'<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--g300)">ยังไม่มีข้อมูลสต๊อก</td></tr>'}
+    </tbody></table></div>`;
+}
+
+function updateBadges(){
+  const sites=getSites();let low=0,al=0;
+  prods.forEach(p=>{const st=gOverallStatus(p.code,sites);if(st==='low')low++;if(['low','expired','near'].includes(st))al++;});
+  const nl=document.getElementById('nb-low'),na=document.getElementById('nb-alerts');
+  nl.textContent=low;nl.style.display=low?'':'none';na.textContent=al;na.style.display=al?'':'none';
+}
+
+// DASHBOARD
+function renderDash(){
+  const sites=getSites();
+  const low=prods.filter(p=>gOverallStatus(p.code,sites)==='low');
+  const exp=prods.filter(p=>gOverallStatus(p.code,sites)==='expired');
+  const near=prods.filter(p=>gOverallStatus(p.code,sites)==='near');
+  const ids=sites.map(s=>s.id);
+  const todTx=txs.filter(t=>t.date===today()&&(curCo==='ALL'||ids.includes(t.siteId)));
+  document.getElementById('d-stats').innerHTML=`<div class="sc si"><div class="slbl">สินค้าทั้งหมด</div><div class="sval">${prods.length}</div><div class="ssub">รายการ</div></div><div class="sc sd"><div class="slbl">สต๊อกต่ำ</div><div class="sval">${low.length}</div><div class="ssub">รายการ</div></div><div class="sc sw"><div class="slbl">ใกล้/หมดอายุ</div><div class="sval">${exp.length+near.length}</div><div class="ssub">รายการ</div></div><div class="sc ss"><div class="slbl">รายการวันนี้</div><div class="sval">${todTx.length}</div><div class="ssub">รับ-จ่าย</div></div>`;
+  let ab='';
+  if(exp.length)ab+=`<div class="abar d">🚨 <strong>หมดอายุแล้ว ${exp.length} รายการ</strong> — ต้องดำเนินการทันที</div>`;
+  if(low.length)ab+=`<div class="abar d">📉 <strong>สต๊อกต่ำ ${low.length} รายการ</strong> — ต่ำกว่ามินิมัม</div>`;
+  if(near.length)ab+=`<div class="abar w">⏰ <strong>ใกล้หมดอายุ ${near.length} รายการ</strong> — ภายใน 30 วัน</div>`;
+  document.getElementById('d-alerts').innerHTML=ab;
+  const tot=low.length+exp.length+near.length;
+  document.getElementById('d-cnt').textContent=tot?`(${tot} รายการ)`:'(ไม่มี)';
+  renderDT();
+}
+function switchDT(t){dashTab=t;document.querySelectorAll('.tab').forEach((el,i)=>el.classList.toggle('active',['low','expiry','recent'][i]===t));renderDT();}
+function renderDT(){
+  const el=document.getElementById('d-tab');const sites=getSites();
+  if(dashTab==='low'){
+    const items=prods.filter(p=>gOverallStatus(p.code,sites)==='low');
+    if(!items.length){el.innerHTML='<div class="empty"><div class="empty-ic">✅</div><div>ไม่มีสินค้าต่ำกว่ามินิมัม</div></div>';return;}
+    el.innerHTML='<div class="tw"><table><thead><tr><th>รหัส</th><th>ชื่อสินค้า</th><th>หมวด</th><th style="text-align:right">คงเหลือรวม</th><th>สถานะ</th><th></th></tr></thead><tbody>'+items.map(p=>{const s=gTotStock(p.code,sites);return`<tr class="rd"><td class="tc">${p.code}</td><td><div class="tn">${p.name}</div></td><td>${catBdg(p.cat)}</td><td class="tnum lo">${s.bal}</td><td>${stBdg('low')}</td><td><button class="btn btn-g btn-sm" onclick="openSetMin('${p.code}')">ตั้งมินิมัม</button></td></tr>`;}).join('')+'</tbody></table></div>';
+  }
+  if(dashTab==='expiry'){
+    const items=prods.filter(p=>['expired','near'].includes(gOverallStatus(p.code,sites)));
+    if(!items.length){el.innerHTML='<div class="empty"><div class="empty-ic">✅</div><div>ไม่มีสินค้าใกล้/หมดอายุ</div></div>';return;}
+    el.innerHTML='<div class="tw"><table><thead><tr><th>รหัส</th><th>ชื่อสินค้า</th><th>หมวด</th><th>วันหมดอายุ</th><th>สถานะ</th></tr></thead><tbody>'+items.map(p=>{const st=gOverallStatus(p.code,sites);return`<tr class="${st==='expired'?'rd':'rw'}"><td class="tc">${p.code}</td><td><div class="tn">${p.name}</div></td><td>${catBdg(p.cat)}</td><td>${fmtD(gLastExp(p.code,sites))}</td><td>${stBdg(st)}</td></tr>`;}).join('')+'</tbody></table></div>';
+  }
+  if(dashTab==='recent'){
+    const ids=sites.map(s=>s.id);const recent=[...txs].filter(t=>curCo==='ALL'||ids.includes(t.siteId)).sort((a,b)=>b.id-a.id).slice(0,15);
+    if(!recent.length){el.innerHTML='<div class="empty"><div class="empty-ic">📋</div><div>ยังไม่มีรายการ</div></div>';return;}
+    el.innerHTML='<div class="tw" style="padding:3px 14px"><div class="txlist">'+recent.map(t=>{const p=prods.find(x=>x.code===t.code);const site=getSite(t.siteId);return`<div class="txi"><div class="txd ${t.type}">${t.type==='in'?'↑':'↓'}</div><div class="txi-i"><div class="txi-n">${p?p.name:t.code}</div><div class="txi-m">${fmtD(t.date)} · ${site?site.name:'—'} · ${t.requester||'—'}</div></div><div class="txq ${t.type}">${t.type==='in'?'+':'-'}${t.qty}</div></div>`;}).join('')+'</div></div>';
+  }
+}
+
+// SITES
+function renderSites(){
+  let html='';
+  const cos=curCo==='ALL'?['AA','RB']:[curCo];
+  cos.forEach(ck=>{
+    const co=COS[ck];
+    html+=`<div class="dh"><div class="dhl"></div><div class="dht">${co.name}</div><div class="dhl"></div></div><div class="scards">`;
+    co.sites.forEach(site=>{
+      const sp=prods.map(p=>({p,st:gSiteStatus(p.code,site.id)}));
+      const lc=sp.filter(x=>x.st==='low').length,ec=sp.filter(x=>x.st==='expired').length,nc=sp.filter(x=>x.st==='near').length;
+      const txc=txs.filter(t=>t.siteId===site.id).length;
+      html+=`<div class="scard${PILOT_SITES.includes(site.id)?' pilot-scard':''}" onclick="setSite('${site.id}');showPage('stock')" style="${PILOT_SITES.includes(site.id)?'border-color:var(--pilot-l);box-shadow:0 0 0 3px var(--pilot-p)':''}"><div class="schdr"><div class="scnm">${site.name}</div><span class="bdg ${ck==='AA'?'baa':'brb'}" style="font-size:10px">${ck}</span>${PILOT_SITES.includes(site.id)?'<span class="bdg bdg-pilot" style="font-size:10px;margin-left:4px">🔬 Pilot</span>':''}</div><div class="scst"><div class="scv"><div class="scv-n red">${lc+ec}</div><div class="scv-l">ต้องดำเนินการ</div></div><div class="scv"><div class="scv-n amb">${nc}</div><div class="scv-l">ใกล้หมดอายุ</div></div><div class="scv"><div class="scv-n gry">${txc}</div><div class="scv-l">รายการทั้งหมด</div></div></div></div>`;
+    });
+    html+='</div>';
+  });
+  document.getElementById('sites-c').innerHTML=html;
+}
+
+// STOCK
+function filterStock(){sP=1;renderStock();}
+function renderStock(){
+  const q=(document.getElementById('sq')?.value||'').toLowerCase();
+  const cat=document.getElementById('s-cat')?.value||'';
+  const stF=document.getElementById('s-st')?.value||'';
+  const sites=fSite?[{id:fSite}]:getSites();
+  let filtered=prods.filter(p=>{
+    const st=fSite?gSiteStatus(p.code,fSite):gOverallStatus(p.code,getSites());
+    return(!q||p.name.toLowerCase().includes(q)||p.code.includes(q))&&(!cat||p.cat===cat)&&(!stF||st===stF);
+  });
+  const paged=filtered.slice((sP-1)*R,sP*R);
+  const siteLabel=fSite?`<div class="abar w" style="margin:0 0 8px"><span>🏭 กรองตาม: <strong>${getSite(fSite)?.name}</strong></span><a href="#" onclick="setSite(null);showPage('stock');return false;" style="margin-left:8px;color:var(--warn)">× ล้างตัวกรอง</a></div>`:'';
+  const rows=paged.map(p=>{
+    const s=fSite?gSiteStock(p.code,fSite):gTotStock(p.code,getSites());
+    const st=fSite?gSiteStatus(p.code,fSite):gOverallStatus(p.code,getSites());
+    const exp=gLastExp(p.code,fSite?[{id:fSite}]:getSites());
+    const mn=fSite?gMin(p.code,fSite):0;
+    const pct=mn>0?Math.min(100,Math.round(s.bal/mn*100)):100;
+    const fc=pct<50?'lo':pct<100?'mi':'ok';
+    const rc=st==='expired'||st==='low'?'rd':st==='near'?'rw':'';
+    return`<tr class="${rc}" onclick="openSetMin('${p.code}')"><td class="tc">${p.code}</td><td><div class="tn">${p.name}<small>${p.size||''}</small></div></td><td>${catBdg(p.cat)}</td><td class="tnum ${s.bal===0?'z':st==='low'?'lo':'ok'}">${s.bal}</td><td><div class="mb-w"><div class="mb"><div class="mb-f ${fc}" style="width:${pct}%"></div></div><span style="font-size:11px;color:var(--g400)">${mn||'—'}</span></div></td><td class="tnum" style="color:var(--g400)">${s.in}</td><td class="tnum" style="color:var(--g400)">${s.out}</td><td>${exp?fmtD(exp):'—'}</td><td>${stBdg(st)}</td></tr>`;
+  }).join('');
+  document.getElementById('stock-b').innerHTML=siteLabel+`<table><thead><tr><th>รหัส</th><th>ชื่อสินค้า</th><th>หมวด</th><th style="text-align:right">คงเหลือ</th><th>vs มินิมัม</th><th style="text-align:right">รับรวม</th><th style="text-align:right">จ่ายรวม</th><th>วันหมดอายุ</th><th>สถานะ</th></tr></thead><tbody>${rows||'<tr><td colspan="9" style="text-align:center;padding:28px;color:var(--g300)">ไม่พบรายการ</td></tr>'}</tbody></table>`;
+  renderPg('s',filtered.length,sP,p=>{sP=p;renderStock();});
+}
+
+// TRANSACTIONS
+function filterTx(){tP=1;renderTx();}
+function renderTx(){
+  const tsel=document.getElementById('t-site');if(tsel){const sites=getSites();tsel.innerHTML='<option value="">ทุกหน่วยงาน</option>'+sites.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');}
+  const q=(document.getElementById('tq')?.value||'').toLowerCase();
+  const typeF=document.getElementById('t-type')?.value||'';
+  const siteF=document.getElementById('t-site')?.value||'';
+  const ids=getSites().map(s=>s.id);
+  let filtered=[...txs].filter(t=>{const p=prods.find(x=>x.code===t.code);return(curCo==='ALL'||ids.includes(t.siteId))&&(!q||(p&&p.name.toLowerCase().includes(q))||t.code.includes(q)||(t.lot&&t.lot.toLowerCase().includes(q)))&&(!typeF||t.type===typeF)&&(!siteF||t.siteId===siteF);}).sort((a,b)=>b.id-a.id);
+  const paged=filtered.slice((tP-1)*R,tP*R);
+  const rows=paged.map(t=>{const p=prods.find(x=>x.code===t.code);const site=getSite(t.siteId);return`<tr><td>${fmtD(t.date)}</td><td><span class="bdg ${t.type==='in'?'bok':'blow'}">${t.type==='in'?'↑ รับเข้า':'↓ จ่ายออก'}</span></td><td class="tc">${t.code}</td><td><div class="tn">${p?p.name:t.code}</div></td><td>${catBdg(p?p.cat:'—')}</td><td style="font-size:11.5px">${site?`<span class="bdg ${site.co==='AA'?'baa':'brb'}" style="font-size:10px;margin-right:3px">${site.co}</span>${site.name}`:'—'}</td><td class="tnum ${t.type==='in'?'ok':'lo'}">${t.type==='in'?'+':'-'}${t.qty}</td><td class="tc">${t.lot||'—'}</td><td class="tc" style="font-size:11px">${t.docNo||'—'}</td><td style="font-size:11.5px">${t.packSize||'—'}</td><td style="font-size:11.5px">${t.weight||'—'}</td><td style="font-size:11.5px">${t.color||'—'}</td><td>${t.expDate?fmtD(t.expDate):'—'}</td><td>${t.requester||'—'}</td><td>${t.approver||'—'}</td></tr>`;}).join('');
+  document.getElementById('tx-b').innerHTML=`<table><thead><tr><th>วันที่</th><th>ประเภท</th><th>รหัส</th><th>ชื่อสินค้า</th><th>หมวด</th><th>หน่วยงาน</th><th style="text-align:right">จำนวน</th><th>Lot No.</th><th>เลขที่ใบแจ้งรับ</th><th>ขนาดบรรจุ</th><th>น้ำหนัก</th><th>สี</th><th>หมดอายุ</th><th>ผู้เบิก</th><th>ผู้อนุมัติ</th></tr></thead><tbody>${rows||'<tr><td colspan="15" style="text-align:center;padding:28px;color:var(--g300)">ยังไม่มีรายการ</td></tr>'}</tbody></table>`;
+  renderPg('t',filtered.length,tP,p=>{tP=p;renderTx();});
+}
+
+// PRODUCTS
+function filterProds(){pP=1;renderProds();}
+function renderProds(){
+  const q=(document.getElementById('pq')?.value||'').toLowerCase();
+  const cat=document.getElementById('p-cat')?.value||'';
+  let filtered=prods.filter(p=>(!q||p.name.toLowerCase().includes(q)||p.code.includes(q))&&(!cat||p.cat===cat));
+  const paged=filtered.slice((pP-1)*R,pP*R);
+  const rows=paged.map(p=>{const s=gTotStock(p.code,ALL_SITES);return`<tr><td class="tc">${p.code}</td><td><div class="tn">${p.name}</div></td><td>${catBdg(p.cat)}</td><td>${p.size||'—'}</td><td class="tnum ok">${s.bal}</td><td><button class="btn btn-g btn-sm" onclick="openSetMin('${p.code}')">ตั้งมินิมัม</button></td></tr>`;}).join('');
+  document.getElementById('prod-b').innerHTML=`<table><thead><tr><th>รหัส</th><th>ชื่อผลิตภัณฑ์</th><th>หมวด</th><th>ขนาดบรรจุ</th><th style="text-align:right">คงเหลือรวม</th><th></th></tr></thead><tbody>${rows}</tbody></table>`;
+  document.getElementById('p-pi').textContent=`แสดง ${Math.min((pP-1)*R+1,filtered.length||1)}–${Math.min(pP*R,filtered.length)} จาก ${filtered.length} รายการ`;
+}
+
+// ALERTS
+function renderAlerts(){
+  const sites=getSites();
+  function sec(title,icon,stF){
+    let rows='';
+    sites.forEach(site=>{
+      prods.forEach(p=>{
+        const st=gSiteStatus(p.code,site.id);if(st!==stF)return;
+        const s=gSiteStock(p.code,site.id);const exp=gLastExp(p.code,[{id:site.id}]);const mn=gMin(p.code,site.id);
+        rows+=`<tr class="${stF==='near'?'rw':'rd'}"><td><span class="bdg ${site.co==='AA'?'baa':'brb'}" style="font-size:10px">${site.co}</span></td><td style="font-size:12px;font-weight:700">${site.name}</td><td class="tc">${p.code}</td><td><div class="tn">${p.name}</div></td><td>${catBdg(p.cat)}</td><td class="tnum ${stF==='low'?'lo':'ok'}">${s.bal}</td><td>${mn||'—'}</td><td>${exp?fmtD(exp):'—'}</td><td>${stBdg(st)}</td><td><button class="btn btn-g btn-sm" onclick="openSetMin('${p.code}')">ตั้งมินิมัม</button></td></tr>`;
+      });
+    });
+    const cnt=(rows.match(/<tr /g)||[]).length;
+    if(!cnt)return`<div class="tw" style="margin-bottom:14px"><div style="padding:12px 14px;font-size:14px;font-weight:800">${icon} ${title}</div><div class="empty"><div class="empty-ic">✅</div><div>ไม่มีรายการ</div></div></div>`;
+    return`<div class="tw" style="margin-bottom:14px"><div style="padding:12px 14px;font-size:14px;font-weight:800">${icon} ${title} (${cnt} รายการ)</div><table><thead><tr><th>บริษัท</th><th>หน่วยงาน</th><th>รหัส</th><th>ชื่อสินค้า</th><th>หมวด</th><th>คงเหลือ</th><th>มินิมัม</th><th>วันหมดอายุ</th><th>สถานะ</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  }
+  document.getElementById('alerts-b').innerHTML=sec('สินค้าหมดอายุแล้ว','🔴','expired')+sec('สต๊อกต่ำกว่ามินิมัม','📉','low')+sec('สินค้าใกล้หมดอายุ (30 วัน)','⏰','near');
+}
+
+// ========== CHARTS ==========
+function destroyChart(id){if(chartInstances[id]){chartInstances[id].destroy();delete chartInstances[id];}}
+
+function renderCharts(){
+  const sites=getSites();
+  // Chart 1: By category
+  destroyChart('cat');
+  const cats=['เคมีภัณฑ์','วัคซีน','เวชภัณฑ์'];
+  const catCounts=cats.map(c=>prods.filter(p=>p.cat===c).length);
+  const catBalances=cats.map(c=>{let b=0;prods.filter(p=>p.cat===c).forEach(p=>{b+=gTotStock(p.code,sites).bal;});return b;});
+  chartInstances['cat']=new Chart(document.getElementById('chart-cat'),{
+    type:'bar',
+    data:{labels:cats,datasets:[{label:'จำนวนรายการ',data:catCounts,backgroundColor:['#bfdbfe','#bbf7d0','#e9d5ff'],borderColor:['#1d4ed8','#166534','#7e22ce'],borderWidth:1.5,borderRadius:6}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#f3f4f6'}}}}
+  });
+
+  // Chart 2: Status donut
+  destroyChart('status');
+  const stCounts={ok:0,low:0,near:0,expired:0};
+  prods.forEach(p=>{const st=gOverallStatus(p.code,sites);stCounts[st]=(stCounts[st]||0)+1;});
+  chartInstances['status']=new Chart(document.getElementById('chart-status'),{
+    type:'doughnut',
+    data:{labels:['ปกติ','สต๊อกต่ำ','ใกล้หมดอายุ','หมดอายุ'],
+      datasets:[{data:[stCounts.ok,stCounts.low,stCounts.near,stCounts.expired],backgroundColor:['#16a34a','#dc2626','#d97706','#991b1b'],borderWidth:2,borderColor:'#fff'}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:11},padding:10}}}}
+  });
+
+  // Chart 3: Site issues
+  destroyChart('sites');
+  const siteNames=sites.map(s=>s.name);
+  const siteLow=sites.map(s=>prods.filter(p=>gSiteStatus(p.code,s.id)==='low').length);
+  const siteExp=sites.map(s=>prods.filter(p=>['expired','near'].includes(gSiteStatus(p.code,s.id))).length);
+  chartInstances['sites']=new Chart(document.getElementById('chart-sites'),{
+    type:'bar',
+    data:{labels:siteNames,datasets:[
+      {label:'สต๊อกต่ำ',data:siteLow,backgroundColor:'#fca5a5',borderColor:'#dc2626',borderWidth:1.5,borderRadius:4},
+      {label:'ใกล้/หมดอายุ',data:siteExp,backgroundColor:'#fcd34d',borderColor:'#d97706',borderWidth:1.5,borderRadius:4}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{stacked:false,grid:{display:false}},y:{beginAtZero:true,grid:{color:'#f3f4f6'}}}}
+  });
+
+  // Chart 4: Activity last 30 days
+  destroyChart('activity');
+  const days30=[];const inData=[];const outData=[];
+  for(let i=29;i>=0;i--){
+    const d=new Date();d.setDate(d.getDate()-i);
+    const ds=d.toISOString().split('T')[0];
+    days30.push(d.toLocaleDateString('th-TH',{day:'2-digit',month:'2-digit'}));
+    const ids=sites.map(s=>s.id);
+    const dayTxs=txs.filter(t=>t.date===ds&&(curCo==='ALL'||ids.includes(t.siteId)));
+    inData.push(dayTxs.filter(t=>t.type==='in').reduce((a,t)=>a+t.qty,0));
+    outData.push(dayTxs.filter(t=>t.type==='out').reduce((a,t)=>a+t.qty,0));
+  }
+  chartInstances['activity']=new Chart(document.getElementById('chart-activity'),{
+    type:'line',
+    data:{labels:days30,datasets:[
+      {label:'รับเข้า',data:inData,borderColor:'#16a34a',backgroundColor:'rgba(22,163,74,0.1)',fill:true,tension:0.3,pointRadius:3},
+      {label:'จ่ายออก',data:outData,borderColor:'#dc2626',backgroundColor:'rgba(220,38,38,0.08)',fill:true,tension:0.3,pointRadius:3}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false},ticks:{maxTicksLimit:10,font:{size:10}}},y:{beginAtZero:true,grid:{color:'#f3f4f6'}}}}
+  });
+}
+
+// ========== AI ==========
+function buildStockSummary(){
+  const sites=getSites();
+  const low=prods.filter(p=>gOverallStatus(p.code,sites)==='low').map(p=>p.name);
+  const exp=prods.filter(p=>gOverallStatus(p.code,sites)==='expired').map(p=>p.name);
+  const near=prods.filter(p=>gOverallStatus(p.code,sites)==='near').map(p=>`${p.name} (หมดอายุ ${fmtD(gLastExp(p.code,sites))})`);
+  const totalTx=txs.filter(t=>sites.map(s=>s.id).includes(t.siteId)).length;
+  const cats={เคมีภัณฑ์:0,วัคซีน:0,เวชภัณฑ์:0};
+  prods.forEach(p=>{cats[p.cat]=(cats[p.cat]||0)+1;});
+  return `ข้อมูลสต๊อกปัจจุบัน (บริษัท: ${curCo==='ALL'?'ทั้งหมด':COS[curCo].name}):
+- สินค้าทั้งหมด: ${prods.length} รายการ (เคมีภัณฑ์ ${cats['เคมีภัณฑ์']} / วัคซีน ${cats['วัคซีน']} / เวชภัณฑ์ ${cats['เวชภัณฑ์']})
+- สต๊อกต่ำกว่ามินิมัม (${low.length} รายการ): ${low.slice(0,10).join(', ')}${low.length>10?'...':''}
+- หมดอายุแล้ว (${exp.length} รายการ): ${exp.slice(0,5).join(', ')}${exp.length>5?'...':''}
+- ใกล้หมดอายุ 30 วัน (${near.length} รายการ): ${near.slice(0,5).join(', ')}${near.length>5?'...':''}
+- รายการรับ-จ่ายทั้งหมด: ${totalTx} รายการ
+- หน่วยงาน: ${sites.map(s=>s.name).join(', ')}`;
+}
+
+async function sendAI(){
+  const inp=document.getElementById('ai-input');
+  const msg=inp.value.trim();
+  if(!msg)return;
+  inp.value='';
+  addMsg('user',msg);
+  document.getElementById('ai-send-btn').disabled=true;
+  const typingId='typing-'+Date.now();
+  addMsg('bot','<div class="typing-dots"><span></span><span></span><span></span></div>',typingId);
+  aiHistory.push({role:'user',content:msg});
+  try{
+    const stockCtx=buildStockSummary();
+    const systemPrompt=`คุณคือ AI ผู้ช่วยวิเคราะห์ระบบสต๊อก ฟาร์มไก่พ่อแม่พันธุ์ และโรงฟักไข่ ของบริษัท Arbor Acres Thailand และ Ross Breeders Siam ในประเทศไทย ที่ดำเนินงานภายใต้มาตรฐาน ISO 9001:2015
+
+ข้อมูลสต๊อก ณ ปัจจุบัน:
+${stockCtx}
+
+คุณต้องวิเคราะห์ข้อมูลด้านบนอย่างชาญฉลาดและตอบเป็นภาษาไทยที่เข้าใจง่าย ให้คำแนะนำที่เป็นประโยชน์และตรงประเด็น ใช้ emoji ประกอบเพื่อให้อ่านง่าย`;
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:systemPrompt,messages:aiHistory})
+    });
+    const data=await res.json();
+    const reply=data.content?.map(c=>c.text||'').join('')||'ขออภัย ไม่สามารถตอบได้ในขณะนี้';
+    aiHistory.push({role:'assistant',content:reply});
+    document.getElementById(typingId)?.remove();
+    addMsg('bot',reply.replace(/\n/g,'<br>'));
+  }catch(e){
+    document.getElementById(typingId)?.remove();
+    addMsg('bot','⚠️ เกิดข้อผิดพลาดในการเชื่อมต่อ AI กรุณาลองใหม่อีกครั้ง');
+  }
+  document.getElementById('ai-send-btn').disabled=false;
+  const msgs=document.getElementById('ai-msgs');msgs.scrollTop=msgs.scrollHeight;
+}
+
+function addMsg(role,text,id){
+  const msgs=document.getElementById('ai-msgs');
+  const div=document.createElement('div');
+  div.className=`ai-msg ${role}`;
+  if(id)div.id=id;
+  div.innerHTML=`<div class="ai-avatar ${role}">${role==='bot'?'🤖':'👤'}</div><div class="ai-bubble">${text}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+function aiQuick(q){document.getElementById('ai-input').value=q;sendAI();}
+
+// ========== PDF ==========
+function openPdfModal(){updatePdfPreview();openModal('modal-pdf');}
+
+function updatePdfPreview(){
+  const type=document.getElementById('pdf-type')?.value||'summary';
+  const co=document.getElementById('pdf-co')?.value||curCo;
+  const sites=co==='ALL'?ALL_SITES:COS[co].sites;
+  const low=prods.filter(p=>gOverallStatus(p.code,sites)==='low');
+  const exp=prods.filter(p=>gOverallStatus(p.code,sites)==='expired');
+  const near=prods.filter(p=>gOverallStatus(p.code,sites)==='near');
+  let preview='';
+  if(type==='summary'){
+    preview=`<div class="pdf-section"><strong>รายงานสรุปสต๊อก</strong> — ${co==='ALL'?'ทั้งสองบริษัท':COS[co].name}<br>วันที่พิมพ์: ${fmtD(today())}</div>
+<div class="pdf-section">สินค้าทั้งหมด: ${prods.length} รายการ | หน่วยงาน: ${sites.length} แห่ง</div>
+<div class="pdf-section">🔴 สต๊อกต่ำ: ${low.length} รายการ | ⏰ ใกล้หมดอายุ: ${near.length} รายการ | ❌ หมดอายุ: ${exp.length} รายการ</div>
+<div class="pdf-section" style="color:#6b7280">ตัวอย่างตาราง: รหัส | ชื่อสินค้า | หมวด | คงเหลือ | สถานะ | วันหมดอายุ (${prods.length} แถว)</div>`;
+  }else if(type==='alerts'){
+    preview=`<div class="pdf-section"><strong>รายงานการแจ้งเตือนสินค้าวิกฤต</strong><br>วันที่: ${fmtD(today())}</div>
+<div class="pdf-section">🔴 หมดอายุแล้ว: ${exp.length} รายการ</div>
+<div class="pdf-section">📉 สต๊อกต่ำ: ${low.length} รายการ</div>
+<div class="pdf-section">⏰ ใกล้หมดอายุ (30 วัน): ${near.length} รายการ</div>`;
+  }else if(type==='transactions'){
+    const ids=sites.map(s=>s.id);const mt=txs.filter(t=>ids.includes(t.siteId));
+    preview=`<div class="pdf-section"><strong>รายงานรับ-จ่ายประจำเดือน</strong><br>วันที่: ${fmtD(today())}</div>
+<div class="pdf-section">รายการทั้งหมด: ${mt.length} รายการ | รับเข้า: ${mt.filter(t=>t.type==='in').length} | จ่ายออก: ${mt.filter(t=>t.type==='out').length}</div>`;
+  }else{
+    preview=`<div class="pdf-section"><strong>รายงานวันหมดอายุสินค้า</strong><br>วันที่: ${fmtD(today())}</div>
+<div class="pdf-section">สินค้าที่มีวันหมดอายุทั้งหมด: ${prods.filter(p=>gLastExp(p.code,sites)).length} รายการ</div>
+<div class="pdf-section">หมดอายุแล้ว: ${exp.length} | ภายใน 30 วัน: ${near.length}</div>`;
+  }
+  const el=document.getElementById('pdf-preview');if(el)el.innerHTML=preview;
+}
+
+function generatePDF(){
+  const type=document.getElementById('pdf-type').value;
+  const co=document.getElementById('pdf-co').value;
+  const sites=co==='ALL'?ALL_SITES:COS[co].sites;
+  const coName=co==='ALL'?'Arbor Acres TH & Ross Breeders Siam':COS[co].name;
+  const low=prods.filter(p=>gOverallStatus(p.code,sites)==='low');
+  const exp=prods.filter(p=>gOverallStatus(p.code,sites)==='expired');
+  const near=prods.filter(p=>gOverallStatus(p.code,sites)==='near');
+  let tableRows='';
+  let title='รายงานสรุปสต๊อกสินค้า';
+  if(type==='summary'||type===''){
+    title='รายงานสรุปสต๊อกสินค้า';
+    tableRows=prods.map(p=>{const s=gTotStock(p.code,sites);const st=gOverallStatus(p.code,sites);const exp=gLastExp(p.code,sites);const stTh=st==='ok'?'ปกติ':st==='low'?'สต๊อกต่ำ':st==='near'?'ใกล้หมดอายุ':'หมดอายุแล้ว';const rc=st==='low'||st==='expired'?'#fff5f5':st==='near'?'#fffbeb':'';return`<tr style="background:${rc}"><td>${p.code}</td><td>${p.name}</td><td>${p.cat}</td><td style="text-align:right">${s.bal}</td><td>${exp||'—'}</td><td>${stTh}</td></tr>`;}).join('');
+  }else if(type==='alerts'){
+    title='รายงานการแจ้งเตือนสินค้าวิกฤต';
+    const items=[...exp.map(p=>({p,st:'expired'})),...low.map(p=>({p,st:'low'})),...near.map(p=>({p,st:'near'}))];
+    tableRows=items.map(({p,st})=>{const s=gTotStock(p.code,sites);const ex=gLastExp(p.code,sites);const stTh=st==='expired'?'🔴 หมดอายุ':st==='low'?'📉 สต๊อกต่ำ':'⏰ ใกล้หมดอายุ';const rc=st==='near'?'#fffbeb':'#fff5f5';return`<tr style="background:${rc}"><td>${p.code}</td><td>${p.name}</td><td>${p.cat}</td><td style="text-align:right">${s.bal}</td><td>${ex||'—'}</td><td>${stTh}</td></tr>`;}).join('');
+  }else if(type==='transactions'){
+    title='รายงานรับ-จ่ายประจำเดือน';
+    const ids=sites.map(s=>s.id);
+    const mt=[...txs].filter(t=>ids.includes(t.siteId)).sort((a,b)=>b.id-a.id);
+    tableRows=mt.map(t=>{const p=prods.find(x=>x.code===t.code);const site=getSite(t.siteId);return`<tr><td>${t.date}</td><td>${t.type==='in'?'รับเข้า':'จ่ายออก'}</td><td>${t.code}</td><td>${p?p.name:t.code}</td><td>${site?site.name:'—'}</td><td style="text-align:right">${t.qty}</td><td>${t.lot||'—'}</td><td>${t.requester||'—'}</td></tr>`;}).join('');
+  }else{
+    title='รายงานวันหมดอายุสินค้า';
+    tableRows=prods.filter(p=>gLastExp(p.code,sites)).map(p=>{const ex=gLastExp(p.code,sites);const st=gOverallStatus(p.code,sites);const stTh=st==='expired'?'🔴 หมดอายุ':st==='near'?'⏰ ใกล้หมดอายุ':'✅ ปกติ';const rc=st==='expired'?'#fff5f5':st==='near'?'#fffbeb':'';return`<tr style="background:${rc}"><td>${p.code}</td><td>${p.name}</td><td>${p.cat}</td><td>${ex}</td><td>${stTh}</td></tr>`;}).join('');
+  }
+
+  const thMap={summary:'<th>รหัส</th><th>ชื่อสินค้า</th><th>หมวด</th><th>คงเหลือ</th><th>วันหมดอายุ</th><th>สถานะ</th>',alerts:'<th>รหัส</th><th>ชื่อสินค้า</th><th>หมวด</th><th>คงเหลือ</th><th>วันหมดอายุ</th><th>สถานะ</th>',transactions:'<th>วันที่</th><th>ประเภท</th><th>รหัส</th><th>ชื่อสินค้า</th><th>หน่วยงาน</th><th>จำนวน</th><th>Lot</th><th>ผู้เบิก</th>',expiry:'<th>รหัส</th><th>ชื่อสินค้า</th><th>หมวด</th><th>วันหมดอายุ</th><th>สถานะ</th>'};
+  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${title}</title><style>
+  body{font-family:'Sarabun',sans-serif;font-size:12px;color:#111;margin:0;padding:20px;}
+  .header{text-align:center;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid #0f4c81;}
+  .header h1{font-size:18px;font-weight:800;color:#0f4c81;margin:0 0 4px;}
+  .header p{color:#6b7280;margin:2px 0;font-size:11px;}
+  .stats{display:flex;gap:12px;margin-bottom:14px;}
+  .stat{flex:1;padding:8px 12px;border-radius:6px;text-align:center;}
+  .stat-label{font-size:10px;color:#6b7280;font-weight:600;}
+  .stat-value{font-size:20px;font-weight:800;}
+  table{width:100%;border-collapse:collapse;font-size:11px;}
+  thead th{background:#0f4c81;color:#fff;padding:7px 10px;text-align:left;font-size:10px;}
+  tbody td{padding:6px 10px;border-bottom:1px solid #e5e7eb;}
+  tbody tr:nth-child(even){background:#f9fafb;}
+  .footer{margin-top:20px;text-align:center;font-size:10px;color:#9ca3af;border-top:1px solid #e5e7eb;padding-top:10px;}
+  @media print{body{padding:10px;}}
+  </style></head><body>
+  <div class="header">
+    <h1>${title}</h1>
+    <p>${coName}</p>
+    <p>ระบบสต๊อก ฟาร์ม/โรงฟักไข่ · ISO 9001:2015 · พิมพ์เมื่อ ${new Date().toLocaleString('th-TH')}</p>
+  </div>
+  <div class="stats">
+    <div class="stat" style="background:#e8f1fb"><div class="stat-label">สินค้าทั้งหมด</div><div class="stat-value" style="color:#0f4c81">${prods.length}</div></div>
+    <div class="stat" style="background:#fdf0ee"><div class="stat-label">สต๊อกต่ำ</div><div class="stat-value" style="color:#c0392b">${low.length}</div></div>
+    <div class="stat" style="background:#fffbeb"><div class="stat-label">ใกล้/หมดอายุ</div><div class="stat-value" style="color:#d97706">${exp.length+near.length}</div></div>
+    <div class="stat" style="background:#e8f5ef"><div class="stat-label">หน่วยงาน</div><div class="stat-value" style="color:#0f4c35">${sites.length}</div></div>
+  </div>
+  <table><thead><tr>${thMap[type]||thMap.summary}</tr></thead><tbody>${tableRows||'<tr><td colspan="6" style="text-align:center;padding:20px">ไม่มีรายการ</td></tr>'}</tbody></table>
+  <div class="footer">Arbor Acres TH · Ross Breeders Siam · ระบบสต๊อก ISO 9001:2015 v9</div>
+  <script>window.onload=()=>window.print()<\/script>
+  </body></html>`;
+  const win=window.open('','_blank');
+  win.document.write(html);
+  win.document.close();
+  closeModal('modal-pdf');
+  toast('กำลังเปิดหน้า PDF...','success');
+}
+
+// PAGINATION
+function renderPg(k,total,cur,cb){
+  const pages=Math.max(1,Math.ceil(total/R));
+  document.getElementById(k+'-pi').textContent=`แสดง ${Math.min((cur-1)*R+1,total||1)}–${Math.min(cur*R,total)} จาก ${total} รายการ`;
+  let btns='';for(let i=1;i<=Math.min(pages,10);i++)btns+=`<button class="pb${i===cur?' active':''}" onclick="(${cb})(${i})">${i}</button>`;
+  document.getElementById(k+'-pb').innerHTML=btns;
+}
+
+// MODALS
+function openModal(id){
+  if(id==='modal-tx'){
+    document.getElementById('f-date').value=today();
+    // Grouped dropdown แยกตามหมวดหมู่
+    const cats=['เคมีภัณฑ์','วัคซีน','เวชภัณฑ์'];
+    let opts='<option value="">-- เลือกสินค้า --</option>';
+    cats.forEach(cat=>{
+      const items=prods.filter(p=>p.cat===cat);
+      if(!items.length) return;
+      opts+=`<optgroup label="━━ ${cat} (${items.length} รายการ) ━━">`;
+      items.forEach(p=>{opts+=`<option value="${p.code}">[${p.code}] ${p.name} | ${p.size||'—'}</option>`;});
+      opts+='</optgroup>';
+    });
+    document.getElementById('f-prod').innerHTML=opts;
+    document.getElementById('f-prod-info').style.display='none';
+    if(curCo!=='ALL')document.getElementById('f-co').value=curCo;
+    ['f-docno','f-packsize','f-weight','f-color','f-lot','f-mfd','f-exp','f-mfr','f-req','f-apr'].forEach(fid=>{const el=document.getElementById(fid);if(el)el.value='';});
+    onCoChange();
+  }
+  document.getElementById(id).classList.add('show');
+}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+function onCoChange(){
+  const co=document.getElementById('f-co').value;
+  document.getElementById('f-site').innerHTML=COS[co].sites.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');
+  onProdChange(); // refresh stock display when site changes
+}
+function onProdChange(){
+  const code=document.getElementById('f-prod').value;
+  const p=prods.find(x=>x.code===code);
+  // hidden fields (kept for saveTx compatibility)
+  const catEl=document.getElementById('f-cat'); if(catEl) catEl.value=p?p.cat:'';
+  const codeEl=document.getElementById('f-code'); if(codeEl) codeEl.value=p?p.code:'';
+  // info panel
+  const panel=document.getElementById('f-prod-info');
+  if(!p||!code){panel.style.display='none';return;}
+  panel.style.display='block';
+  document.getElementById('fi-code').textContent=p.code||'—';
+  // category badge color
+  const catColor=p.cat==='เคมีภัณฑ์'?'#1d4ed8':p.cat==='วัคซีน'?'#166534':'#7e22ce';
+  document.getElementById('fi-cat').innerHTML=`<span style="background:${p.cat==='เคมีภัณฑ์'?'#eff6ff':p.cat==='วัคซีน'?'#f0fdf4':'#fdf4ff'};color:${catColor};padding:2px 8px;border-radius:20px;font-size:11px;font-weight:800">${p.cat}</span>`;
+  document.getElementById('fi-size').textContent=p.size||'—';
+  document.getElementById('fi-unit').textContent=p.unit||'—';
+  // auto-fill ขนาดบรรจุในฟอร์ม
+  const psEl=document.getElementById('f-packsize'); if(psEl&&!psEl.value) psEl.value=p.size||'';
+  // สต๊อกคงเหลือ ณ หน่วยงานที่เลือก
+  const siteId=document.getElementById('f-site')?.value;
+  const stockEl=document.getElementById('fi-stock');
+  if(siteId&&code){
+    const s=gSiteStock(code,siteId);
+    const st=gSiteStatus(code,siteId);
+    const color=st==='low'||st==='expired'?'#c0392b':st==='near'?'#d97706':'#1a6b4a';
+    stockEl.innerHTML=`<span style="color:${color};font-size:15px;font-weight:800">${s.bal}</span> <span style="font-size:11px;color:var(--g500)">${p.unit||''}</span>`;
+  } else {
+    stockEl.textContent='—';
+  }
+}
+function openSetMin(code){
+  smCode=code;const p=prods.find(x=>x.code===code);
+  document.getElementById('sm-nm').textContent=p?p.name:code;
+  const sites=getSites();
+  document.getElementById('sm-site').innerHTML=sites.map(s=>`<option value="${s.id}">${s.name} (${s.co})</option>`).join('');
+  const first=sites[0];if(first)document.getElementById('sm-val').value=gMin(code,first.id)||'';
+  openModal('modal-setmin');
+}
+function onSmSiteChange(){document.getElementById('sm-val').value=gMin(smCode,document.getElementById('sm-site').value)||'';}
+
+// SAVE
+function saveTx(){
+  const code=document.getElementById('f-prod').value,qty=parseInt(document.getElementById('f-qty').value),date=document.getElementById('f-date').value,type=document.getElementById('f-type').value,siteId=document.getElementById('f-site').value;
+  if(!code||!qty||!date||!siteId){toast('กรุณากรอกข้อมูลให้ครบ','error');return;}
+  if(qty<=0){toast('จำนวนต้องมากกว่า 0','error');return;}
+  if(type==='out'){const s=gSiteStock(code,siteId);if(qty>s.bal){toast(`สต๊อกที่ ${getSite(siteId)?.name} มีเพียง ${s.bal} หน่วย`,'error');return;}}
+  txs.push({id:Date.now(),date,type,code,qty,siteId,lot:document.getElementById('f-lot').value,docNo:document.getElementById('f-docno').value,packSize:document.getElementById('f-packsize').value,weight:document.getElementById('f-weight').value,color:document.getElementById('f-color').value,mfDate:document.getElementById('f-mfd').value,expDate:document.getElementById('f-exp').value,mfr:document.getElementById('f-mfr').value,requester:document.getElementById('f-req').value,approver:document.getElementById('f-apr').value});
+  save();closeModal('modal-tx');toast(`บันทึก${type==='in'?'รับเข้า':'จ่ายออก'}เรียบร้อย`,'success');renderPage(curPage);
+}
+function saveProduct(){
+  const code=document.getElementById('np-code').value.trim(),name=document.getElementById('np-name').value.trim();
+  if(!code||!name){toast('กรุณากรอกข้อมูลให้ครบ','error');return;}
+  if(prods.find(p=>p.code===code)){toast('รหัสสินค้าซ้ำ','error');return;}
+  prods.push({code,name,cat:document.getElementById('np-cat').value,mfr:document.getElementById('np-mfr').value||'—',size:document.getElementById('np-size').value||'—'});
+  save();closeModal('modal-product');toast('เพิ่มสินค้าเรียบร้อย','success');renderPage(curPage);
+}
+function saveMin(){
+  const siteId=document.getElementById('sm-site').value,val=parseInt(document.getElementById('sm-val').value)||0;
+  mins[smCode+':'+siteId]=val;save();closeModal('modal-setmin');toast('บันทึกมินิมัมสต๊อกเรียบร้อย','success');renderPage(curPage);
+}
+
+// EXPORT CSV
+function exportCSV(){
+  const sites=getSites();const hdr='รหัส,ชื่อสินค้า,หมวด,บริษัท,หน่วยงาน,คงเหลือ,รับรวม,จ่ายรวม,มินิมัม,สถานะ,วันหมดอายุ,เลขที่ใบแจ้งรับ,ขนาดบรรจุ,น้ำหนัก,สี';
+  const rows=[];
+  sites.forEach(site=>{prods.forEach(p=>{const s=gSiteStock(p.code,site.id);const exp=gLastExp(p.code,[{id:site.id}]);const st=gSiteStatus(p.code,site.id);const mn=gMin(p.code,site.id);const lastTx=txs.filter(t=>t.code===p.code&&t.siteId===site.id).sort((a,b)=>b.id-a.id)[0];rows.push(`"${p.code}","${p.name}","${p.cat}","${COS[site.co].short}","${site.name}",${s.bal},${s.in},${s.out},${mn},"${st}","${exp||''}","${lastTx?.docNo||''}","${lastTx?.packSize||''}","${lastTx?.weight||''}","${lastTx?.color||''}"`);});});
+  const blob=new Blob(['\uFEFF'+hdr+'\n'+rows.join('\n')],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`stock_${today()}.csv`;a.click();
+  toast('Export CSV เรียบร้อย','success');
+}
+
+// TOAST
+function toast(msg,type=''){const el=document.createElement('div');el.className=`toast ${type}`;el.innerHTML=`${type==='success'?'✓':type==='error'?'✕':'ℹ'} ${msg}`;document.getElementById('twrap').appendChild(el);setTimeout(()=>el.remove(),3000);}
+// INIT — Google Sheets mode
+document.querySelectorAll('.moverlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('show');}));
+if(GAS_URL && currentUser){
+  loadFromSheets();
+} else {
+  showSetupOverlay();
+  // Pre-fill if URL known but no user
+  if(GAS_URL) document.getElementById('gs-url').value = GAS_URL;
+}
+</script>
+</body>
+</html>
